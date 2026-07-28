@@ -1,6 +1,6 @@
 ---
 title: "OECD AI Capability Gap Index by Occupation"
-subtitle: "Domain-level gaps, aggregate index, NOC mapping, and comparison to AIOE/Complementarity"
+subtitle: "Domain-level gaps, aggregate index, AIOE/Complementarity, NOC mapping -- single self-contained pipeline"
 output: html_document
 ---
 
@@ -45,18 +45,29 @@ columns that ship in the two input CSVs are OECD's own published numbers for a
 *different* AI_i assumption -- they are used **only as a QA cross-check** in
 Sections 2-3, never as the source of the numbers we carry forward.
 
+This version is **self-contained**: the AIOE, Complementarity, and C-AIOE
+calculation (previously a separate `AIOE_CAIOE_digital_economy.Rmd` run whose
+NOC-level output CSV had to be merged in) is now computed inline in Sections
+6-8, from the same raw O*NET/mTurk source files that script used. Only one
+file needs to be run end to end.
+
 **Required input files (place in the working directory):**
 
 | File | Source | Notes |
 |---|---|---|
 | `oecd_capability_demands.csv` | OECD AI Exposure Measure public data | ~879 O*NET-SOC occupations; per-domain Job Demands (H_ji) + OECD's own published Capability Gap / Total / Reversed columns (used for QA only) |
 | `cognitive_scenario.csv` | Same source, "+1 cognitive capability" scenario export | OECD's own published per-domain gaps under the scenario (QA only -- we recompute the scenario ourselves from `oecd_capability_demands.csv`'s H_ji using scenario AI_i) |
-| `soc_noc_crosswalk.csv` | ICTC crosswalk (SOC -> NOC via The Dais) | `noc, noc_title, onetsoc_code`, same file used by the AIOE pipeline |
-| `noc_aioe_complementarity_caioe_quadrants.csv` | Output of `AIOE_CAIOE_digital_economy.Rmd` | NOC-level AIOE / Complementarity / C-AIOE, merged in as parallel columns (Section 7) |
+| `abilities.csv` | https://www.onetcenter.org/dl_files/database/db_30_3_csv/abilities.csv | current O*NET Abilities (Importance + Level scales), for AIOE |
+| `work_context.csv` | https://www.onetcenter.org/dl_files/database/db_30_3_csv/work_context.csv | for Complementarity |
+| `job_zones.csv` | https://www.onetcenter.org/dl_files/database/db_30_3_csv/job_zones.csv | for Complementarity (Skills group) |
+| `mturk_ai_relatedness.csv` | AIOE-Data/AIOE GitHub repo (`Input/mturk_mapping_matrix.dta`, exported to CSV) | 10 AI applications x 52 O*NET abilities, crowdsourced relatedness scores, for AIOE |
+| `application_list.csv` | Same repo (`Input/application_list.dta`) | flags which of the 10 applications count toward AIOE (all 1 in the base index) |
+| `soc_noc_crosswalk.csv` | ICTC crosswalk (SOC -> NOC via The Dais) | `noc, noc_title, onetsoc_code` |
 
-**Note on encoding:** both OECD CSVs are Windows-1252 encoded (their domain
+**Note on encoding:** the two OECD CSVs are Windows-1252 encoded (their domain
 column headers use an em-dash, `—`), so they are read with an explicit locale
-below rather than the default UTF-8 guess.
+below rather than the default UTF-8 guess. The O*NET/mTurk files are read with
+the default UTF-8 guess, matching the original AIOE pipeline.
 
 ---
 
@@ -450,12 +461,221 @@ write_csv(demands, "oecd_capability_gap_occupation_level.csv")
 
 ---
 
-# Section 6 — SOC -> NOC Aggregation
+# Section 6 — AIOE: Ability-Level Exposure (A_j) and Occupation-Level AIOE
 
-Same three-tier pattern as the AIOE pipeline: (1) direct match on 6-digit base
-SOC, (2) backward-crosswalk fallback for any SOC code revisions, (3) major
-(2-digit) SOC-group average as a last resort for anything still unmatched.
-Coerce join keys and verify row counts at each step.
+Ported from `AIOE_CAIOE_digital_economy.Rmd` Sections 1-2, unchanged. This
+reproduces Data Appendix E of Felten, Raj & Seamans (2021): for each of the 52
+O*NET abilities, sum its crowdsourced relatedness to the 10 AI applications,
+then standardize (z-score) across abilities. This step uses **only** the
+crowdsourced mTurk matrix -- it does not depend on any O*NET occupation data.
+
+```{r ability-exposure}
+mturk <- read_csv("mturk_ai_relatedness.csv", show_col_types = FALSE)
+app_list <- read_csv("application_list.csv", show_col_types = FALSE)
+
+# Ability columns are everything except application_id / applications
+ability_cols <- setdiff(names(mturk), c("application_id", "applications"))
+
+# Multiply each application's relatedness row by its inclusion flag (binary_all),
+# then sum across all 10 applications for each ability -> raw ability exposure
+mturk_weighted <- mturk %>%
+  left_join(app_list %>% select(applications, score = binary_all), by = "applications") %>%
+  mutate(across(all_of(ability_cols), ~ .x * score))
+
+ability_exposure_raw <- mturk_weighted %>%
+  summarise(across(all_of(ability_cols), sum)) %>%
+  pivot_longer(everything(), names_to = "onet_element", values_to = "onet_score")
+
+# Standardize (z-score) across the 52 abilities -- this is "ability_exposure"
+ability_exposure <- ability_exposure_raw %>%
+  mutate(ability_exposure = as.numeric(scale(onet_score))) %>%
+  select(onet_element, ability_exposure)
+
+head(ability_exposure)
+```
+
+```{r aioe-occupation}
+abilities <- read_csv("abilities.csv", show_col_types = FALSE)
+
+abilities_clean <- abilities %>%
+  rename(onetsoc_code = `O*NET-SOC Code`,
+         element_id   = `Element ID`,
+         element_name = `Element Name`,
+         scale_id     = `Scale ID`,
+         data_value   = `Data Value`) %>%
+  mutate(
+    onet_element = str_remove_all(str_to_lower(element_name), "[ -]")
+  )
+
+# Rescale Importance (IM, native 1-5) and Level (LV, native 1-7), per the
+# original methodology, then compute scalar = level_scaled x importance_scaled
+scaled <- abilities_clean %>%
+  filter(scale_id %in% c("IM", "LV")) %>%
+  mutate(
+    scaled_value = case_when(
+      scale_id == "IM" ~ data_value / 5,
+      scale_id == "LV" ~ data_value / 7
+    )
+  ) %>%
+  select(onetsoc_code, element_id, onet_element, scale_id, scaled_value) %>%
+  pivot_wider(names_from = scale_id, values_from = scaled_value, values_fn = max) %>%
+  rename(importance_scaled = IM, level_scaled = LV) %>%
+  filter(!is.na(importance_scaled), !is.na(level_scaled)) %>%
+  mutate(scalar = level_scaled * importance_scaled)
+
+# Sanity check: every mTurk ability should exist in the current O*NET release
+missing_abilities <- setdiff(ability_exposure$onet_element, unique(scaled$onet_element))
+if (length(missing_abilities) > 0) {
+  warning("Abilities present in mTurk matrix but missing from current O*NET data: ",
+          paste(missing_abilities, collapse = "; "))
+}
+
+# Join ability exposure onto the occupation-ability table, weight, and sum
+occ_ability <- scaled %>%
+  inner_join(ability_exposure, by = "onet_element") %>%
+  mutate(wtd_element_impact = scalar * ability_exposure)
+
+occ_aioe_detailed <- occ_ability %>%
+  group_by(onetsoc_code) %>%
+  summarise(
+    ability_base          = sum(scalar, na.rm = TRUE),
+    total_weighted_impact = sum(wtd_element_impact, na.rm = TRUE),
+    .groups = "drop"
+  ) %>%
+  mutate(ability_base_impact = total_weighted_impact / ability_base)
+
+# Aggregate detailed O*NET-SOC (8-digit) up to base SOC (7-char, e.g. 15-1252),
+# averaging across detailed occupations that share a base SOC code
+occ_aioe_soc <- occ_aioe_detailed %>%
+  mutate(onetsoc_base = substr(onetsoc_code, 1, 7)) %>%
+  group_by(onetsoc_base) %>%
+  summarise(ability_base_impact = mean(ability_base_impact, na.rm = TRUE), .groups = "drop") %>%
+  mutate(aioe_score = as.numeric(scale(ability_base_impact))) %>%   # final standardization
+  arrange(desc(aioe_score))
+
+cat("AIOE computed for", nrow(occ_aioe_soc), "SOC occupations\n")
+cat("Range: min =", round(min(occ_aioe_soc$aioe_score), 3),
+    " max =", round(max(occ_aioe_soc$aioe_score), 3), "\n")
+```
+
+---
+
+# Section 7 — Complementarity Score (O*NET Work Context)
+
+Ported from `AIOE_CAIOE_digital_economy.Rmd` Section 3, unchanged.
+
+```{r complementarity}
+work_context <- read_csv("work_context.csv", show_col_types = FALSE)
+job_zones    <- read_csv("job_zones.csv",    show_col_types = FALSE)
+
+cx <- work_context %>%
+  filter(`Scale ID` == "CX") %>%
+  select(onetsoc_code = `O*NET-SOC Code`,
+         element_name = `Element Name`,
+         data_value   = `Data Value`)
+
+element_scales <- tribble(
+  ~element_name,                                                  ~scale_min, ~scale_max, ~group,
+  "Face-to-Face Discussions with Individuals and Within Teams",   1,          5,          "communication",
+  "Public Speaking",                                              1,          5,          "communication",
+  "Work Outcomes and Results of Other Workers",                   1,          5,          "responsibility",
+  "Health and Safety of Other Workers",                           1,          5,          "responsibility",
+  "Outdoors, Exposed to All Weather Conditions",                  1,          5,          "physical",
+  "Physical Proximity",                                           1,          5,          "physical",
+  "Consequence of Error",                                         1,          5,          "criticality",
+  "Freedom to Make Decisions",                                    1,          5,          "criticality",
+  "Frequency of Decision Making",                                 1,          5,          "criticality",
+  "Degree of Automation",                                         0,          100,        "routine",
+  "Importance of Repeating Same Tasks",                           1,          5,          "routine",
+)
+
+missing_elements <- setdiff(element_scales$element_name, unique(cx$element_name))
+if (length(missing_elements) > 0) {
+  warning("These element names were not found in Work Context.csv: ",
+          paste(missing_elements, collapse = "; "))
+}
+
+cx_scaled <- cx %>%
+  inner_join(element_scales, by = "element_name") %>%
+  mutate(value_0_100 = (data_value - scale_min) / (scale_max - scale_min) * 100) %>%
+  mutate(value_0_100 = if_else(element_name == "Degree of Automation",
+                                100 - value_0_100, value_0_100))
+
+group_means <- cx_scaled %>%
+  group_by(onetsoc_code, group) %>%
+  summarise(group_mean = mean(value_0_100, na.rm = TRUE), .groups = "drop") %>%
+  pivot_wider(names_from = group, values_from = group_mean, names_glue = "{group}_mean")
+
+job_zones_scaled <- job_zones %>%
+  select(onetsoc_code = `O*NET-SOC Code`, job_zone = `Job Zone`) %>%
+  mutate(skills_mean = job_zone * 20)
+
+complementarity <- group_means %>%
+  left_join(job_zones_scaled %>% select(onetsoc_code, skills_mean), by = "onetsoc_code") %>%
+  rowwise() %>%
+  mutate(
+    complementarity_score = mean(c(communication_mean, responsibility_mean,
+                                    physical_mean, criticality_mean,
+                                    routine_mean, skills_mean), na.rm = TRUE)
+  ) %>%
+  ungroup() %>%
+  mutate(onetsoc_base = str_extract(onetsoc_code, "^[0-9]{2}-[0-9]{4}")) %>%
+  arrange(desc(complementarity_score))
+
+cat("Complementarity computed for", nrow(complementarity), "occupations\n")
+cat("Range: min =", round(min(complementarity$complementarity_score, na.rm = TRUE), 1),
+    " max =", round(max(complementarity$complementarity_score, na.rm = TRUE), 1), "\n")
+```
+
+---
+
+# Section 8 — Merge AIOE + Complementarity, Compute C-AIOE
+
+Ported from `AIOE_CAIOE_digital_economy.Rmd` Section 4, unchanged. Following
+Pizzinelli et al. (2023, IMF WP/23/216), equation (1), using their literal
+convention (theta already on a 0-1 basis, so divide by 100 rather than by the
+empirical range):
+
+`C-AIOE_i = AIOE_i * (1 - (theta_i - theta_MIN) / 100)`
+
+```{r merge-caioe}
+aioe_comp <- occ_aioe_soc %>%
+  select(onetsoc_base, aioe_score) %>%
+  distinct() %>%
+  inner_join(
+    complementarity %>% select(onetsoc_base, complementarity_score) %>% distinct(),
+    by = "onetsoc_base"
+  )
+
+theta_min <- min(aioe_comp$complementarity_score, na.rm = TRUE)
+
+aioe_comp <- aioe_comp %>%
+  mutate(
+    c_aioe = aioe_score * (1 - (complementarity_score - theta_min) / 100)
+  )
+
+# ---- Augmentation Index (range-anchored, mirrors C-AIOE's theta_MIN anchoring) ----
+comp_min <- min(aioe_comp$complementarity_score, na.rm = TRUE)
+comp_max <- max(aioe_comp$complementarity_score, na.rm = TRUE)
+
+aioe_comp <- aioe_comp %>%
+  mutate(
+    augmentation_index = aioe_score * ((complementarity_score - comp_min) / (comp_max - comp_min))
+  )
+
+cat("theta_MIN =", round(theta_min, 2), "\n")
+head(aioe_comp)
+```
+
+---
+
+# Section 9 — SOC -> NOC Aggregation: OECD Gap Index
+
+Same three-tier pattern used throughout: (1) direct match on 6-digit base SOC,
+(2) backward-crosswalk fallback for any SOC code revisions, (3) major (2-digit)
+SOC-group average as a last resort for anything still unmatched. Coerce join
+keys and verify row counts at each step. `crosswalk` is loaded once here and
+reused in Section 10 for the AIOE/Complementarity aggregation.
 
 ```{r crosswalk-load}
 crosswalk <- read_csv("soc_noc_crosswalk.csv", show_col_types = FALSE,
@@ -568,12 +788,12 @@ if (nrow(dup_check) > 0) {
   warning(nrow(dup_check), " onetsoc_code x noc combinations matched via more than one tier -- check for overlap.")
 }
 
-# Note: unlike the AIOE pipeline, gap data here is not pre-collapsed to base
-# SOC before this join, so where a base SOC covers multiple detailed O*NET-SOC
-# occupations (e.g. 11-1011.00 and 11-1011.03 both -> base 11-1011), the join
-# fans out and n_onet_linked_oecd below counts each matched detailed
-# occupation -- this is intentional, so the NOC-level mean is an average
-# across every linked detailed occupation, not just distinct base codes.
+# Note: gap data here is not pre-collapsed to base SOC before this join, so
+# where a base SOC covers multiple detailed O*NET-SOC occupations (e.g.
+# 11-1011.00 and 11-1011.03 both -> base 11-1011), the join fans out and
+# n_onet_linked_oecd below counts each matched detailed occupation -- this is
+# intentional, so the NOC-level mean is an average across every linked
+# detailed occupation, not just distinct base codes.
 noc_oecd_gap <- all_matched %>%
   group_by(noc, noc_title) %>%
   summarise(
@@ -600,24 +820,147 @@ write_csv(noc_oecd_gap, "noc_oecd_capability_gap.csv")
 
 ---
 
-# Section 7 — Merge with Existing AIOE / Complementarity Pipeline Output
+# Section 10 — SOC -> NOC Aggregation: AIOE / Complementarity / C-AIOE
+
+Ported from `AIOE_CAIOE_digital_economy.Rmd` Sections 5-6 (crosswalk join,
+median-split quadrant, digital economy tier lookup), unchanged, but reusing
+the same `crosswalk` table loaded in Section 9 instead of re-reading the file.
+This uses a plain direct join (not the three-tier fallback above), matching
+the original AIOE pipeline's own convention.
+
+```{r crosswalk-aioe}
+noc_aioe_comp <- crosswalk %>%
+  inner_join(aioe_comp, by = "onetsoc_base") %>%
+  group_by(noc, noc_title) %>%
+  summarise(
+    aioe_score             = mean(aioe_score, na.rm = TRUE),
+    complementarity_score  = mean(complementarity_score, na.rm = TRUE),
+    c_aioe                 = mean(c_aioe, na.rm = TRUE),
+    augmentation_index     = mean(augmentation_index, na.rm = TRUE),
+    n_onet_linked          = n(),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(c_aioe))
+
+cat("NOC-level AIOE/Complementarity results:", nrow(noc_aioe_comp), "occupations\n")
+```
+
+```{r aioe-quadrants}
+aioe_median <- median(noc_aioe_comp$aioe_score, na.rm = TRUE)
+comp_median <- median(noc_aioe_comp$complementarity_score, na.rm = TRUE)
+
+noc_aioe_comp <- noc_aioe_comp %>%
+  mutate(
+    quadrant = case_when(
+      aioe_score >= aioe_median & complementarity_score >= comp_median ~
+        "High Exposure, High Complementarity",
+      aioe_score >= aioe_median & complementarity_score < comp_median ~
+        "High Exposure, Low Complementarity",
+      TRUE ~ "Low Exposure"
+    )
+  )
+
+cat("AIOE median:", round(aioe_median, 3), " | Complementarity median:", round(comp_median, 2), "\n")
+table(noc_aioe_comp$quadrant)
+
+# ---- Digital Economy Tier Lookup ----------------------------------------
+digital_economy_tiers <- tribble(
+  ~noc,    ~noc_desc,                                                      ~tier,
+  "00014", "Senior managers - trade, broadcasting",                       "Digital-Enabled",
+  "10022", "Advertising, marketing, PR managers",                         "Digital-Enabled",
+  "10030", "Telecommunication carriers managers",                         "Core-Digital",
+  "12111", "Health information management",                               "Digital-Enabled",
+  "12112", "Records management technicians",                              "Digital-Enabled",
+  "14112", "Desktop publishing operators",                                "Digital-Enabled",
+  "20010", "Engineering managers",                                        "Digital-Intensive",
+  "20012", "Computer and information systems managers",                   "Core-Digital",
+  "11202", "Professional occupations in advertising, marketing and PR",   "Digital-Enabled",
+  "21100", "Physicists and astronomers",                                  "Digital-Intensive",
+  "21200", "Architects",                                                  "Digital-Intensive",
+  "21210", "Mathematicians, statisticians, actuaries",                    "Digital-Enabled",
+  "21211", "Data scientists",                                             "Core-Digital",
+  "21220", "Cybersecurity specialists",                                   "Core-Digital",
+  "21221", "Business systems specialists",                                "Core-Digital",
+  "21222", "Information systems specialists",                             "Core-Digital",
+  "21223", "Database analysts and data administrators",                   "Core-Digital",
+  "21230", "Computer systems developers",                                 "Core-Digital",
+  "21231", "Software engineers and designers",                            "Core-Digital",
+  "21232", "Software developers and programmers",                        "Core-Digital",
+  "21233", "Web designers",                                               "Core-Digital",
+  "21234", "Web developers and programmers",                              "Core-Digital",
+  "21300", "Civil engineers",                                             "Digital-Intensive",
+  "21301", "Mechanical engineers",                                        "Digital-Intensive",
+  "21310", "Electrical and electronics engineers",                        "Core-Digital",
+  "21311", "Computer engineers",                                          "Core-Digital",
+  "21321", "Industrial/manufacturing engineers",                          "Digital-Intensive",
+  "21390", "Aerospace engineers",                                         "Digital-Intensive",
+  "22210", "Architectural technologists",                                 "Digital-Intensive",
+  "22211", "Industrial designers",                                        "Digital-Intensive",
+  "22212", "Drafting technologists and technicians",                      "Digital-Enabled",
+  "22214", "Geomatics and meteorology technicians",                       "Digital-Enabled",
+  "22220", "Computer network and web technicians",                        "Core-Digital",
+  "22221", "User support technicians",                                    "Core-Digital",
+  "22222", "Information systems testing technicians",                     "Core-Digital",
+  "22301", "Mechanical engineering technologists",                        "Digital-Intensive",
+  "22302", "Industrial engineering technologists",                        "Digital-Adjacent",
+  "22310", "Electrical/electronics engineering techs",                    "Digital-Adjacent",
+  "22311", "Electronic service technicians",                              "Digital-Adjacent",
+  "50011", "Managers - publishing, broadcasting",                         "Digital-Enabled",
+  "52110", "Film and video camera operators",                             "Digital-Adjacent",
+  "52111", "Graphic arts technicians",                                    "Digital-Enabled",
+  "52112", "Broadcast technicians",                                       "Digital-Adjacent",
+  "52113", "Audio and video recording technicians",                       "Digital-Adjacent",
+  "52120", "Graphic designers and illustrators",                          "Digital-Enabled",
+  "53111", "Broadcasting, photography assistants",                        "Digital-Adjacent",
+  "62100", "Technical sales specialists",                                 "Digital-Adjacent",
+  "72011", "Electrical trades supervisors",                               "Digital-Adjacent",
+  "72201", "Industrial electricians",                                     "Digital-Adjacent",
+  "72202", "Power system electricians",                                   "Digital-Adjacent",
+  "72203", "Electrical power line workers",                                "Digital-Adjacent",
+  "72204", "Telecommunications line installers",                          "Digital-Adjacent",
+  "72205", "Telecommunications equipment installers",                     "Digital-Adjacent",
+  "92021", "Electronics manufacturing supervisors",                       "Digital-Adjacent",
+  "94201", "Electronics assemblers",                                      "Digital-Adjacent"
+) %>%
+  select(noc, tier)   # drop noc_desc here, since noc_aioe_comp already has noc_title
+
+# ---- Join tier + derive binary digital economy flag ----------------------
+noc_aioe_comp <- noc_aioe_comp %>%
+  mutate(noc = str_pad(as.character(noc), width = 5, side = "left", pad = "0"))
+
+digital_economy_tiers <- digital_economy_tiers %>%
+  mutate(noc = str_pad(as.character(noc), width = 5, side = "left", pad = "0"))
+
+noc_aioe_comp <- noc_aioe_comp %>%
+  left_join(digital_economy_tiers, by = "noc") %>%
+  mutate(
+    digital_economy = if_else(!is.na(tier), "Digital Economy", "Non-Digital Economy"),
+    tier = if_else(is.na(tier), "Not Applicable", tier)
+  )
+
+cat("Digital economy classification:\n")
+print(table(noc_aioe_comp$digital_economy))
+cat("\nTier breakdown:\n")
+print(table(noc_aioe_comp$tier))
+```
+
+---
+
+# Section 11 — Merge OECD Gap Index with AIOE / Complementarity
 
 The OECD Gap Index is merged in as **parallel columns**, not blended into a
 single number, so AIOE / Complementarity / OECD Gap can be compared side by
-side per NOC.
+side per NOC. Both NOC-level tables were computed inline above (Sections 9-10),
+so this is a local merge, not a file read.
 
 ```{r merge-aioe-complementarity}
-aioe_comp_noc <- read_csv("noc_aioe_complementarity_caioe_quadrants.csv", show_col_types = FALSE,
-                           col_types = cols(noc = col_character())) %>%
-  mutate(noc = str_pad(noc, width = 5, side = "left", pad = "0"))
-
 noc_oecd_gap <- noc_oecd_gap %>%
   mutate(noc = str_pad(as.character(noc), width = 5, side = "left", pad = "0"))
 
-cat("AIOE/Complementarity NOCs:", n_distinct(aioe_comp_noc$noc), "\n")
+cat("AIOE/Complementarity NOCs:", n_distinct(noc_aioe_comp$noc), "\n")
 cat("OECD gap NOCs:            ", n_distinct(noc_oecd_gap$noc), "\n")
 
-comparison <- aioe_comp_noc %>%
+comparison <- noc_aioe_comp %>%
   left_join(
     noc_oecd_gap %>% select(-noc_title),
     by = "noc"
@@ -630,7 +973,7 @@ cat("Matched to OECD gap data:", n_matched, "of", nrow(comparison), "NOCs (",
 
 ---
 
-# Section 8 — Divergence Flag: OECD Gap Index vs AIOE
+# Section 12 — Divergence Flag: OECD Gap Index vs AIOE
 
 Both `aioe_score` and `exposure_reversed_baseline` should tell a broadly
 similar story (higher = more exposed), but they come from very different
@@ -672,12 +1015,11 @@ comparison %>%
 
 ---
 
-# Section 9 — OECD Quadrant Classification (Median Split)
+# Section 13 — OECD Quadrant Classification (Median Split)
 
-Same median-split convention as the AIOE pipeline's `quadrant` column
-(Section 6 of `AIOE_CAIOE_digital_economy.Rmd`), applied here to the OECD
-exposure score instead of AIOE, so the two quadrant classifications can be
-compared side by side per NOC.
+Same median-split convention as `quadrant` (Section 10 above), applied here to
+the OECD exposure score instead of AIOE, so the two quadrant classifications
+can be compared side by side per NOC.
 
 ```{r oecd-quadrants}
 oecd_exposure_median <- median(comparison$oecd_exposure_reversed_baseline, na.rm = TRUE)
@@ -702,7 +1044,7 @@ table(comparison$oecd_quadrant, useNA = "ifany")
 
 ---
 
-# Section 10 — Final Output
+# Section 14 — Final Output
 
 ```{r write-final}
 write_csv(comparison, "noc_oecd_gap_vs_aioe_complementarity.csv")
@@ -722,16 +1064,18 @@ Final output (`noc_oecd_gap_vs_aioe_complementarity.csv`) contains, per NOC:
 - `oecd_exposure_reversed_baseline` / `oecd_exposure_reversed_scenario` --
   normalized exposure score, `1 - CG_j / 23`
 - `aioe_score`, `complementarity_score`, `c_aioe`, `augmentation_index`,
-  `quadrant`, `tier`, `digital_economy` -- carried over unchanged from the
-  AIOE/Complementarity pipeline
+  `quadrant`, `tier`, `digital_economy` -- computed inline in Sections 6-10
+  (previously required a separate `AIOE_CAIOE_digital_economy.Rmd` run and
+  file merge)
 - `n_onet_linked_oecd`, `n_direct`, `n_backward_crosswalk`,
-  `n_major_group_fallback` -- coverage diagnostics for the SOC->NOC mapping
+  `n_major_group_fallback` -- coverage diagnostics for the OECD SOC->NOC mapping
+- `n_onet_linked` -- coverage diagnostic for the AIOE/Complementarity SOC->NOC mapping
 - `divergence_flag`, `divergence_direction` -- flags NOCs where the OECD
   exposure ranking and the AIOE ranking disagree sharply
 - `oecd_quadrant` -- median-split classification of the OECD exposure score
   (High Exposure/High Complementarity, High Exposure/Low Complementarity,
-  Low Exposure), same convention as the AIOE pipeline's `quadrant` column,
-  so the two can be compared side by side
+  Low Exposure), same convention as `quadrant`, so the two can be compared
+  side by side
 
 Intermediate outputs, useful for auditing:
 
