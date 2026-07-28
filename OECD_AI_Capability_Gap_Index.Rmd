@@ -474,11 +474,15 @@ cat("Distinct onetsoc_base in gap data:", n_distinct(demands$onetsoc_base), "\n"
 
 ```{r crosswalk-tier1-direct}
 # ---- Tier 1: direct match on base SOC code ---------------------------------
+# relationship = "many-to-many" is expected and intentional here: a base SOC
+# code can cover several detailed O*NET-SOC occupations in `demands` (e.g.
+# 11-1011.00 and 11-1011.03 both -> base 11-1011), and each should contribute
+# to the NOC-level average computed later.
 matched_direct <- crosswalk %>%
   inner_join(
     demands %>% select(onetsoc_base, cg_total_baseline, cg_total_scenario,
                         exposure_reversed_baseline, exposure_reversed_scenario),
-    by = "onetsoc_base"
+    by = "onetsoc_base", relationship = "many-to-many"
   ) %>%
   mutate(match_method = "direct")
 
@@ -508,7 +512,7 @@ matched_tier2 <- unmatched_after_tier1 %>%
   inner_join(
     demands %>% select(onetsoc_base, cg_total_baseline, cg_total_scenario,
                         exposure_reversed_baseline, exposure_reversed_scenario),
-    by = c("current_onetsoc_base" = "onetsoc_base")
+    by = c("current_onetsoc_base" = "onetsoc_base"), relationship = "many-to-many"
   ) %>%
   mutate(match_method = "backward_crosswalk") %>%
   select(-current_onetsoc_base)
@@ -551,8 +555,15 @@ cat("Still unmatched (no major group fallback available):", n_distinct(still_unm
 # ---- Combine all tiers and aggregate to NOC --------------------------------
 all_matched <- bind_rows(matched_direct, matched_tier2, matched_tier3)
 
-# Sanity check: every crosswalk row should appear at most once across all tiers
-dup_check <- all_matched %>% count(onetsoc_code, noc) %>% filter(n > 1)
+# Sanity check: a given (onetsoc_code, noc) pair may legitimately appear more
+# than once (base-SOC fan-out to multiple detailed occupations, see note
+# above) -- what should never happen is the *same* pair being matched via
+# more than one tier (e.g. both "direct" and "major_group_average"), which
+# would mean the tiering logic isn't mutually exclusive.
+dup_check <- all_matched %>%
+  group_by(onetsoc_code, noc) %>%
+  summarise(n_methods = n_distinct(match_method), .groups = "drop") %>%
+  filter(n_methods > 1)
 if (nrow(dup_check) > 0) {
   warning(nrow(dup_check), " onetsoc_code x noc combinations matched via more than one tier -- check for overlap.")
 }
