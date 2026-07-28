@@ -10,6 +10,8 @@ library(dplyr)
 library(tidyr)
 library(readr)
 library(stringr)
+library(tibble)
+library(purrr)
 ```
 
 ## Overview
@@ -98,7 +100,12 @@ classify_domain_column <- function(col_names) {
     hit <- str_detect(cleaned, domain_patterns[[key]])
     domain[hit] <- key
   }
+  # Only classify a measure if the column also matched a domain -- otherwise
+  # summary columns like "AI Capability Gap Index (Total)" (which contains
+  # the substring "capability gap" but isn't a per-domain column) get
+  # misclassified.
   measure <- case_when(
+    is.na(domain) ~ NA_character_,
     str_detect(cleaned, "capability gap") ~ "gap",
     str_detect(cleaned, "job demands")    ~ "demand",
     TRUE ~ NA_character_
@@ -550,6 +557,12 @@ if (nrow(dup_check) > 0) {
   warning(nrow(dup_check), " onetsoc_code x noc combinations matched via more than one tier -- check for overlap.")
 }
 
+# Note: unlike the AIOE pipeline, gap data here is not pre-collapsed to base
+# SOC before this join, so where a base SOC covers multiple detailed O*NET-SOC
+# occupations (e.g. 11-1011.00 and 11-1011.03 both -> base 11-1011), the join
+# fans out and n_onet_linked_oecd below counts each matched detailed
+# occupation -- this is intentional, so the NOC-level mean is an average
+# across every linked detailed occupation, not just distinct base codes.
 noc_oecd_gap <- all_matched %>%
   group_by(noc, noc_title) %>%
   summarise(
@@ -624,9 +637,10 @@ comparison <- comparison %>%
     percentile_gap   = aioe_percentile - oecd_percentile,
     divergence_flag  = abs(percentile_gap) > divergence_threshold & !is.na(percentile_gap),
     divergence_direction = case_when(
-      !divergence_flag ~ "Consistent",
-      percentile_gap > 0  ~ "AIOE High / OECD Low",
-      percentile_gap < 0  ~ "AIOE Low / OECD High",
+      is.na(percentile_gap)  ~ NA_character_,   # no OECD match -- not comparable, not "consistent"
+      !divergence_flag       ~ "Consistent",
+      percentile_gap > 0     ~ "AIOE High / OECD Low",
+      percentile_gap < 0     ~ "AIOE Low / OECD High",
       TRUE ~ NA_character_
     )
   )
