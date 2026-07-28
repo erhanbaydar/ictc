@@ -1,0 +1,506 @@
+noc,noc_title,aioe_score,complementarity_score,c_aioe,augmentation_index,n_onet_linked,quadrant,tier,digital_economy
+41404,"Health policy researchers, consultants and program officers",1.480663554575214,54.579861111111114,1.2467248823838077,0.5321020634400238,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+41402,Business development officers and market researchers and analysts,1.4148751967543793,53.308194444444446,1.209323307232567,0.4675352883471223,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+11102,Financial advisors,1.4083733360997488,53.914722222222224,1.1952238559773634,0.48481628596016235,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21211,Data scientists,1.4110815514083328,55.47522222222222,1.1779943111216604,0.5301654504416526,5,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+21210,"Mathematicians, statisticians and actuaries",1.420324718001122,56.594409722222224,1.1678029963754482,0.5743698888335583,8,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+21103,Meteorologists and climatologists,1.441744158365374,59.15138888888889,1.1480448539268098,0.668029806524654,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+30010,Managers in health care,1.4086345552797903,57.906666666666666,1.1440061617140496,0.6019069568196084,3,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+22303,Construction estimators,1.3914640558544038,56.67583333333334,1.1424538327033922,0.5663828571614046,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+41401,Economists and economic policy researchers and analysts,1.3681284901012585,56.15194444444444,1.1304617692291683,0.5405816464735365,4,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+63102,Financial sales representatives,1.398845869945361,58.294074074074075,1.126335222495896,0.6198354314783693,3,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21223,Database analysts and data administrators,1.3473781214089637,55.715555555555554,1.1178860746602501,0.5219880512878736,6,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+14202,Collection clerks,1.3144748591602817,53.81,1.1169129391475445,0.44936181056007546,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+11100,Financial auditors and accountants,1.4126714413484647,60.46111111111111,1.1063925006021065,0.696642649258179,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+12113,Statistical officers and related research support occupations,1.3224075697907756,55.13305555555556,1.1043560718999559,0.49596610460780094,3,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+14102,Personnel clerks,1.3309519995426742,56.2875,1.097939275311628,0.5299959609485867,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21231,Software engineers and designers,1.226499384995942,49.31333333333333,1.0973115233857722,0.29384251475075585,1,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+11103,"Securities agents, investment dealers and brokers",1.383572830617902,59.791111111111114,1.0928726491314924,0.6612081917125209,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21232,Software developers and programmers,1.2496198416938724,51.60777777777778,1.0893248565005909,0.3645968047157546,1,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+12202,Insurance underwriters,1.30459271017342,56.00388888888889,1.0798947351892452,0.5110837597729438,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+11202,"Professional occupations in advertising, marketing and public relations",1.3204403972661483,57.4485,1.0760104839494709,0.5559647749725403,5,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+14301,"Correspondence, publication and regulatory clerks",1.2424351173612338,53.52444444444444,1.0592484129322979,0.4166648571111928,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21390,Aerospace engineers,1.3166399053803666,58.34305555555555,1.059068566557262,0.5858554277791532,1,"High Exposure, Low Complementarity",Digital-Intensive,Digital Economy
+41406,"Recreation, sports and fitness policy researchers, consultants and program officers",1.2215158725026534,52.26083333333334,1.0568487466900038,0.37454139841385065,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+14403,Purchasing and inventory control workers,1.2131241862964666,51.83416666666667,1.0547643029330882,0.36019534485017224,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+11109,Other financial officers,1.340000746283289,60.52524691358025,1.0497354121868216,0.6602191154246952,9,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21100,Physicists and astronomers,1.3039148011453485,58.274027777777775,1.0496622052883884,0.5783068255588768,4,"High Exposure, Low Complementarity",Digital-Intensive,Digital Economy
+42200,Paralegals and related occupations,1.3012323927468505,57.83402777777778,1.049109629142439,0.5734624442270249,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+41409,Other professional occupations in social science,1.310880337920724,59.07333333333333,1.0470842628778185,0.6000138179072108,6,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+40020,Administrators - post-secondary education and vocational training,1.438663118872737,66.2461111111111,1.043522304415016,0.8987622300869353,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+10021,"Banking, credit and other investment managers",1.3997502105275985,64.62944444444445,1.037926445691302,0.822981382545881,6,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21202,Urban and land use planners,1.279296983253096,58.18611111111111,1.032142828893512,0.5621611608315344,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+13201,Production and transportation logistics coordinators,1.3577345402178087,62.8412962962963,1.0310497810636794,0.7430564293281686,3,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+10022,"Advertising, marketing and public relations managers",1.2910873655973867,59.2737037037037,1.0302116041526836,0.5933714578521623,6,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+41100,Judges,1.5727768133587738,73.30861111111112,1.0297231926528785,1.235195316060265,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+41407,Program officers unique to government,1.2156109736638085,55.051944444444445,1.0178108080658126,0.44990370885476194,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+41101,Lawyers and Quebec notaries,1.3897123013325456,65.8175,1.0139726981717068,0.8546334656222879,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+63100,Insurance agents and brokers,1.319150686139273,61.99916666666667,1.0128585540475799,0.6966726534554606,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+41320,Educational counsellors,1.3897460282651573,65.93583333333333,1.0123527734784856,0.8583947567079987,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+13111,Legal administrative assistants,1.1909702274602825,54.03472222222222,1.00929433576248,0.4132284583141191,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+10011,Human resources managers,1.3228850362088835,62.57055555555556,1.007867346198474,0.7165192539756842,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+10020,"Insurance, real estate and financial brokerage managers",1.3383590901519888,63.971435185185186,1.0027245808934966,0.763412963171824,6,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+13102,Payroll administrators,1.1574173415458118,52.55916666666666,0.9979380920734828,0.36274138399256,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21234,Web developers and programmers,1.158886346384023,52.838611111111106,0.9970830189596412,0.36802758427017374,2,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+21220,Cybersecurity specialists,1.2292719395816138,57.88979532163742,0.9943642700135215,0.5343060834029166,19,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+14103,Court clerks and related court services occupations,1.2244574598600246,57.32703703703704,0.991355249418246,0.5301995006067978,3,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+31200,Psychologists,1.310147446361091,63.244753086419756,0.9902439522766238,0.7276321939826389,9,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21332,Petroleum engineers,1.316221654582793,63.58833333333333,0.9896926552796411,0.7427021478520456,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21311,Computer engineers (except software engineers and designers),1.210573992676473,57.765634920634916,0.9806344195146762,0.5230059664774175,7,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+13100,Administrative officers,1.2083200862830263,57.02666666666667,0.9795164193391545,0.5204223062524097,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21233,Web designers,1.2027947541378947,57.50575396825396,0.9769995447555374,0.5135794595299839,7,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+21330,Mining engineers,1.3248241216633923,65.10083333333333,0.9761230527075783,0.7931333309582942,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21331,Geological engineers,1.3248241216633923,65.10083333333333,0.9761230527075783,0.7931333309582942,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+41405,"Education policy researchers, consultants and program officers",1.3327476028978307,65.99194444444444,0.9700847676892826,0.8248898787866441,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14200,Accounting and related clerks,1.1612944785687702,55.1425,0.9693799249418555,0.4365166692298751,7,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+22222,Information systems testing technicians,1.1986567264979253,58.10722222222222,0.9669930068880749,0.5269276006137846,1,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+20012,Computer and information systems managers,1.2020831405023022,58.88547619047619,0.9620757050506753,0.5459056873686503,7,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+12101,Human resources and recruitment officers,1.337883843335998,67.03027777777778,0.9599316575935785,0.859666065603138,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+41201,Post-secondary teaching and research assistants,1.1557460064179303,56.68347222222222,0.95173931527966,0.464020678126397,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+41302,Religious leaders,1.3850360674977626,70.17694444444444,0.9501809101723817,0.9890939550219059,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+51112,Technical writers,1.162392041152712,57.14,0.9489800912638551,0.4854132830407301,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+64310,Travel counsellors,1.1121485034913345,54.169444444444444,0.940998116708214,0.3892878125397945,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+10012,Purchasing managers,1.2860407327205985,65.88925925925926,0.9400039451604114,0.7870733255093532,3,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+12100,Executive assistants,1.0583650489176006,50.272777777777776,0.9367324456707454,0.2766578033591613,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21109,Other professional occupations in physical sciences,1.16593251404926,59.01638888888888,0.9298808249259887,0.5369081977101591,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+13101,Property administrators,1.2726043307387063,66.04583333333333,0.9256216899387383,0.7892247032866325,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+64400,Customer services representatives - financial institutions,1.0345658217090639,49.34638888888889,0.9252524474697045,0.24863726655148274,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+60010,Corporate sales managers,1.2603702111223858,66.35263888888889,0.9162838919980332,0.7826369137367284,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+62100,Technical sales specialists - wholesale trade,1.1125745004902685,56.91888888888889,0.9107689385249517,0.4590141293422422,4,"High Exposure, Low Complementarity",Digital-Adjacent,Digital Economy
+41321,Career development practitioners and career counsellors (except education),1.2168563528386103,64.70462962962964,0.9076417901443169,0.7033198287144169,3,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14101,Receptionists,1.0099537890457706,49.28583333333333,0.9038525326521288,0.2413311870661703,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+41200,University professors and lecturers,1.2132589433307095,64.78474673202615,0.9029930096602238,0.7057112104412275,34,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22220,Computer network and web technicians,1.109792822292816,58.16404513888889,0.8957947706942629,0.48674639280917326,16,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+21222,Information systems specialists,1.1508730299328322,61.11925925925926,0.894499348219875,0.583131312891976,3,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+21300,Civil engineers,1.1820689045402981,64.35738888888889,0.8823567894843624,0.681706164121314,10,"High Exposure, High Complementarity",Digital-Intensive,Digital Economy
+21221,Business systems specialists,1.1264580700554248,60.63004629629629,0.8803243706465312,0.5598400987351153,6,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+41210,College and other vocational instructors,1.1827042272797723,64.72929365079365,0.8803140622209344,0.6877974867709269,35,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+00011,Senior government managers and officials,1.2734050828290682,70.29766666666667,0.8736288599489294,0.9093056360289749,5,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+00012,"Senior managers - financial, communications and other business services",1.2734050828290682,70.29766666666667,0.8736288599489294,0.9093056360289749,5,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+00015,"Senior managers - construction, transportation, production and utilities",1.2734050828290682,70.29766666666667,0.8736288599489294,0.9093056360289749,5,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+13110,Administrative assistants,0.9979503039293778,51.30537037037037,0.8718268240617143,0.2868724664338988,3,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+10010,Financial managers,1.174716316212117,64.9663425925926,0.8678624752812616,0.6979502807479938,12,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+12013,"Supervisors, supply chain, tracking and scheduling coordination occupations",1.2146433804033538,67.70708333333333,0.8632858515606487,0.7991755460996364,4,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+52121,Interior designers and interior decorators,1.1193807373074045,62.14944444444444,0.85779078717147506,0.5949959061433631,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+11200,Human resources professionals,1.1025476133790117,61.6632264957265,0.8522288024427429,0.5693592879250968,13,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+14405,Transportation route and crew schedulers,1.1664513548929554,65.80444444444444,0.8512275966610916,0.7169879636798903,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+41220,Secondary school teachers,1.187100995395714,67.08027777777778,0.8511514136987268,0.764129606953229,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+12200,Accounting technicians and bookkeepers,1.0185966848577528,55.678333333333335,0.8464736511634425,0.3915001335023547,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+51110,Editors,1.1067883202301205,62.373333333333335,0.8456631369558281,0.5939387769232174,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+12111,Health information management occupations,1.0468865676745311,60.248,0.844745712134366,0.4597767668376326,5,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+21320,Chemical engineers,1.0856170768476474,61.51022222222222,0.8369029579293077,0.5657093572576818,5,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+12203,"Assessors, business valuators and appraisers",1.0244791838656135,57.89398148148148,0.8307487652259476,0.44064692059516886,3,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+22214,Technical occupations in geomatics and meteorology,1.0229990874328425,58.254947916666666,0.8271159516536141,0.4455433544392779,16,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+12102,Procurement and purchasing agents and officers,1.110982313468151,65.22888888888889,0.8260470715782846,0.6480956258156859,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+70020,Managers in transportation,1.1302192094741703,65.15405555555556,0.8235162166257733,0.6976071712689571,10,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14201,"Banking, insurance and other financial clerks",0.9726609535219783,55.41201388888889,0.8193257296031284,0.34876657322608856,4,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+12010,"Supervisors, general office and administrative support workers",1.0175388627619204,58.52111111111111,0.8166682117621942,0.4568876401676928,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+12011,"Supervisors, finance and insurance office workers",1.0175388627619204,58.52111111111111,0.8166682117621942,0.4568876401676928,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21230,Computer systems developers and programmers,0.9534747014482613,53.91027777777778,0.8126886195825367,0.32022309078977507,4,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+51111,Authors and writers (except technical),0.930790121228041,51.935138888888886,0.8083459735445493,0.278503690852932,6,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+11201,Professional occupations in business management consulting,1.055928524811094,62.435304232804235,0.8059407897145954,0.5686062438223554,21,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+20011,Architecture and science managers,1.0946804005667539,65.95855555555556,0.8016011595631185,0.6666194495704205,5,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+12104,Employment insurance and revenue officers,1.000560427580918,60.06787037037037,0.7953990360432515,0.4666470864043366,9,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+40011,"Government managers - economic analysis, policy development and program administration",1.0498407750550451,64.09339506172839,0.7908595881181771,0.5890621788624314,9,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14404,Dispatchers,0.9738927416365509,57.869791666666664,0.7834055709412474,0.43327003456227337,4,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+00013,"Senior managers - health, education, social and community services and membership organizations",1.0968290859568322,67.57343434343434,0.7777213935429067,0.7258221139859558,11,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+51114,"Translators, terminologists and interpreters",1.0623795711571056,66.48194444444444,0.7680827236204013,0.6693889401494465,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21201,Landscape architects,0.9757542542782014,60.11388888888889,0.7675906362703676,0.4734757602816644,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+12201,Insurance adjusters and claims examiners,0.9553436800258608,59.007777777777775,0.7602150806980776,0.4438271336922168,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+00014,"Senior managers - trade, broadcasting and other services",1.092840100378079,70.28607142857143,0.7527349632818056,0.7735815696492062,7,"High Exposure, High Complementarity",Digital-Enabled,Digital Economy
+21200,Architects,1.0597032218950124,67.75277777777778,0.75268070593148,0.6983339382771125,1,"High Exposure, High Complementarity",Digital-Intensive,Digital Economy
+31121,Dietitians and nutritionists,1.0222748798196273,65.90805555555556,0.7515635369012145,0.6157428475342039,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+65109,Other sales related occupations,0.9050611026889963,56.99847222222222,0.7432026625009379,0.3681529402662537,10,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21321,Industrial and manufacturing engineers,1.004297591908486,65.10175925925927,0.7400060292396415,0.6011408226290104,12,"High Exposure, High Complementarity",Digital-Intensive,Digital Economy
+41400,"Natural and applied science policy researchers, consultants and program officers",0.9556111273979896,61.88581349206349,0.7379981903306275,0.49496858197967064,14,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+41403,"Social policy researchers, consultants and program officers",0.9438909893639984,61.101215277777776,0.736711828708825,0.4712365760381517,8,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+40012,Government managers - education policy development and program administration,1.00563219977384,66.31607638888889,0.7283621902868176,0.6306607744501816,8,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22232,Occupational health and safety specialists,0.9582547336354481,62.6665625,0.7282195558989982,0.5232234225780731,8,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21322,Metallurgical and materials engineers,0.9396384936573708,61.36555555555556,0.7274185297579268,0.48270206732501786,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+41301,Therapists in counselling and related specialized therapies,0.9563362562460169,63.411631944444444,0.7247565447941863,0.5267365209867636,24,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+51113,Journalists,0.9493524384929949,63.14944444444444,0.7180031605025728,0.5262123916534109,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+10029,Other business services managers,0.9674682763172292,65.01625730994152,0.7145622615563008,0.5752439776206721,19,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+12112,Records management technicians,0.8875134970251641,55.440104166666664,0.712571579925593,0.3979117868749487,8,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+41300,Social workers,0.9866042070100197,66.60638888888889,0.7121478228504979,0.6242610807677057,3,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31112,Audiologists and speech-language pathologists,0.9983293675016485,67.69958333333334,0.7102578579793914,0.6552291812174615,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+43109,Other instructors,0.8819671698693001,59.249,0.7091999727071931,0.3929653068625202,5,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+40010,Government managers - health and social policy development and program administration,0.9808676897503615,66.5429861111111,0.7077619269461344,0.6211890431120828,8,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+40019,Other managers in public administration,0.9496824218966355,65.30324074074073,0.6977985048712212,0.5729191789501066,12,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+50010,"Library, archive, museum and art gallery managers",0.9496824218966355,65.30324074074073,0.6977985048712212,0.5729191789501066,6,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+64314,Hotel front desk clerks,0.8401302495766123,56.87958333333333,0.6942479599144513,0.33181460175630817,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+60020,Retail and wholesale trade managers,0.9589014278989841,66.36238095238095,0.6938303935150368,0.6029137595449727,7,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21110,Biologists and related scientists,0.9267770271869651,64.54061904761905,0.6921759794331961,0.5336086608751713,35,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+13200,"Customs, ship and other brokers",0.904230291772762,62.36412698412698,0.6909779832829424,0.4850501728416233,7,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+70012,Facility operation and maintenance managers,0.8712134700385162,61.982261904761906,0.6895343707585637,0.41323575407699864,7,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+50011,"Managers - publishing, motion pictures, broadcasting and performing arts",0.9327034476399764,65.02422222222222,0.6878542112862771,0.5569185405520284,10,"High Exposure, High Complementarity",Digital-Enabled,Digital Economy
+52114,Announcers and other broadcasters,0.9674734524789798,68.29194444444445,0.6819559120948915,0.6494200850314759,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14402,Production logistics workers,0.8287262737697014,57.85472222222222,0.6706513410829851,0.35954721411740315,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21301,Mechanical engineers,0.8806098056422716,62.6754797979798,0.6705767997665244,0.4777277513379901,22,"High Exposure, High Complementarity",Digital-Intensive,Digital Economy
+80010,Managers in natural resources production and fishing,0.9162453705393085,66.06385416666666,0.667023845064131,0.5668634720236042,8,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21120,Public and environmental health and safety professionals,0.8767898888499418,63.40508333333333,0.6667464255153113,0.4777515372105779,10,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+40021,School principals and administrators of elementary and secondary education,1.0105857049480065,73.45944444444444,0.6629341029525084,0.7907462799852113,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21399,Other professional engineers,0.8721873821076978,63.10568438003221,0.6602107515400468,0.482148596764815,69,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22211,Industrial designers,0.8464330591103922,63.06666666666667,0.6408650346907235,0.4675719877622396,1,"High Exposure, High Complementarity",Digital-Intensive,Digital Economy
+63101,Real estate agents and salespersons,0.8443447967420236,63.34027777777778,0.6369737146621826,0.47167310833581494,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21310,Electrical and electronics engineers,0.7973383138667112,59.20505555555556,0.6293129585165531,0.382179814284449,5,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+12110,"Court reporters, medical transcriptionists and related occupations",0.7731064436770863,57.33347222222223,0.6253276299102715,0.33612831517528685,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+22212,Drafting technologists and technicians,0.748009324659091,56.38444444444444,0.617810554714114,0.29614186272029347,7,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+62101,Retail and wholesale buyers,0.7983721382629648,62.03666666666667,0.612699609007992,0.4223189565676626,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+51120,"Producers, directors, choreographers and related occupations",0.8009685167917323,63.91107487922705,0.6018509747332343,0.4529001297816398,23,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+10030,Telecommunication carriers managers,0.7349551962439667,59.79763888888889,0.5804870086444969,0.35134354054240835,2,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+20010,Engineering managers,0.8159342164673277,68.34569444444443,0.5746998656428604,0.5486963512440972,2,"High Exposure, High Complementarity",Digital-Intensive,Digital Economy
+52120,Graphic designers and illustrators,0.70823694244859825,59.04680555555555,0.5652913435118552,0.3251349913266078,2,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+64320,Tour and travel guides,0.7207108067440648,60.48583333333333,0.5642765221913392,0.35581549994933614,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+50012,"Recreation, sports and fitness program and service directors",0.7653431483659534,65.65677083333333,0.5592045128794803,0.46886986349703913,8,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+70021,Postal and courier services managers,0.8029079276591548,69.24,0.5583444031939753,0.5562686784150562,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+72025,"Supervisors, mail and message distribution occupations",0.8029079276591548,69.24,0.5583444031939753,0.5562686784150562,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14112,Desktop publishing operators and related occupations,0.6182188164634508,50.507777777777775,0.5457172047626996,0.16490756670249332,1,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+43202,By-law enforcement and other regulatory officers,0.70917627511832,62.45508680555555,0.5426492631376705,0.37877177750631064,16,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21102,Geoscientists and oceanographers,0.7240113348313773,64.14708333333333,0.5394192328176743,0.4198614853035435,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+51100,Librarians,0.7141539784194345,63.37472222222222,0.5385117749492769,0.3995046138295407,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+12012,"Supervisors, library, correspondence and related information workers",0.6833699334539235,60.85638888888889,0.5325084276447093,0.3431400109387336,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+51102,Archivists,0.6833699334539235,60.85638888888889,0.5325084276447093,0.3431400109387336,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+72601,Air traffic controllers and related occupations,0.7374792109501769,70.80458333333334,0.5268718828283256,0.4790340682857985,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+74202,Air transport ramp attendants,0.6579048381830336,63.74055555555555,0.5163200095380782,0.3220398695438537,5,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21101,Chemists,0.6954000366561814,65.8525,0.5069487938356061,0.4286392421712164,4,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22210,Architectural technologists and technicians,0.6223171863746118,58.029444444444444,0.5025263139740521,0.27246871920973426,3,"High Exposure, Low Complementarity",Digital-Intensive,Digital Economy
+22300,Civil engineering technologists and technicians,0.6459852853608736,61.815694444444446,0.49507228088323196,0.34325714654302664,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+64313,"Ground and water transport ticket agents, cargo service representatives and related clerks",0.59792526434258,58.35638888888889,0.49416358099631286,0.23600974262769722,3,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+42201,Social and community service workers,0.6765487304699721,67.90272222222222,0.482738253457535,0.440829016291225,5,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+51121,"Conductors, composers and arrangers",0.5840816133174715,58.92322222222222,0.48258256474108324,0.23086329711449644,5,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+90010,Manufacturing managers,0.7174593367617776,72.90065972222222,0.4812666817958785,0.5372288296733746,8,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+40030,"Managers in social, community and correctional services",0.5800848835962744,67.10944444444445,0.4754325008693912,0.23803567093570632,3,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+10019,Other administrative services managers,0.626677886182904,66.12805555555555,0.4735712216431548,0.34824670656146745,4,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+41221,Elementary school and kindergarten teachers,0.6765076632518021,69.59061111111112,0.4644722721296917,0.48228224979440554,5,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14100,General office support workers,0.5006831003942003,53.518055555555556,0.452528560942181,0.10952926066648308,4,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+64101,Sales and account representatives - wholesale trade (non-technical),0.591674007570397,62.91555555555556,0.44887184230437177,0.3248087461981696,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31100,Specialists in clinical and laboratory medicine,0.6987678815601641,75.10488095238095,0.44843684040846304,0.569387105997273,28,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+32200,Traditional Chinese medicine practitioners and acupuncturists,0.6209971472609379,67.325,0.4451002753784556,0.4000838664448592,3,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+32209,Other practitioners of natural healing,0.6209971472609379,67.325,0.4451002753784556,0.4000838664448592,3,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+90011,Utilities managers,0.6494558147006338,72.79445175438596,0.43503082864677045,0.4877174708378561,38,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22113,Conservation and fishery officers,0.5427171242419035,64.27769097222222,0.4341864302692922,0.24685703166748854,16,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31102,General practitioners and family physicians,0.666063134091959,76.07360042735043,0.4183725906751558,0.5633811973542666,26,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31101,Specialists in surgery,0.6200103659364768,73.79905982905983,0.39738950152949554,0.5063592958193592,13,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+70010,Construction managers,0.5997849604760707,74.73055555555555,0.38416060111558864,0.49044548927665665,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+70011,Home building and renovation managers,0.5997849604760707,74.73055555555555,0.38416060111558864,0.49044548927665665,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+60040,Managers in customer and personal services,0.5213225138858382,65.01231481481481,0.38332278893221666,0.3138854201151404,12,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31303,"Physician assistants, midwives and allied health professionals",0.5179978642781626,67.86876543209877,0.37787667397755553,0.3187107706143684,18,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31111,Optometrists,0.5756466036036002,73.4263888888889,0.3762074417117595,0.4536316658520203,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31120,Pharmacists,0.5982909115924036,76.10638888888889,0.3749721811637435,0.5079466176018654,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+41310,Police investigators and other investigative occupations,0.4503657022668708,65.61435990338164,0.34816896961250915,0.23245020505939187,23,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+53123,"Theatre, fashion, exhibit and other creative designers",0.4222004613464894,57.718333333333334,0.3431815330415353,0.17973144161254212,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+94151,"Camera, platemaking and other prepress occupations",0.391634098310121,52.132222222222225,0.3393433310782527,0.11893726198537091,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+62022,"Accommodation, travel, tourism and related services supervisors",0.45422229107550904,64.79527777777778,0.33605636205221534,0.26877272608505337,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22302,Industrial engineering and manufacturing technologists and technicians,0.41085164345789876,62.407361111111115,0.3137793832817315,0.22079440504075354,8,"High Exposure, High Complementarity",Digital-Adjacent,Digital Economy
+31300,Nursing coordinators and supervisors,0.364430837512686,60.7537962962963,0.2843525599446438,0.18214097024460868,3,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+43100,Elementary and secondary school teacher assistants,0.3350992072466492,59.18083333333333,0.2684808363217518,0.1515259204478504,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+12103,Conference and event planners,0.35497438205880183,66.43805555555555,0.25679635630093856,0.2233095092866218,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+60031,Accommodation service managers,0.38303714132426747,72.6575,0.253274797764198,0.29514919495068687,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14111,Data entry clerks,0.29196273332427436,53.449999999999996,0.24913261135319587,0.09741867842847374,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+42203,Instructors of persons with disabilities,0.3242602701884293,68.96597222222222,0.24234674272435108,0.1863153132357061,8,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31209,Other professional occupations in health diagnosing and treating,0.3196265769921949,63.79107638888889,0.23625681679463242,0.1896275678325087,24,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+51101,Conservators and curators,0.3038439681406474,63.62902777777778,0.22227174725726093,0.18553899893867043,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31301,Registered nurses and registered psychiatric nurses,0.30358170145360514,70.94557613168725,0.2064150508774783,0.22100909945667424,27,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+64410,Security guards and related security service occupations,0.22003301012892812,62.25833333333333,0.18027544248928762,0.09043004125927563,11,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+21203,Land surveyors,0.24930171641037147,68.38958333333333,0.17548520944317997,0.16789834406275783,4,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+32104,Animal health technologists and veterinary technicians,0.2724148154840477,66.59416666666667,0.1743543984849924,0.22304200386456344,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+62023,Customer and information services supervisors,0.2620709707755544,72.62583333333333,0.1733715947667304,0.20174997386290014,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+62029,Other services supervisors,0.2620709707755544,72.62583333333333,0.1733715947667304,0.20174997386290014,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+65229,Other support occupations in personal services,0.2620709707755544,72.62583333333333,0.1733715947667304,0.20174997386290014,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22110,Biological technologists and technicians,0.2105826774649801,65.10166666666666,0.15922026648744803,0.1168256817412307,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14300,Library assistants and clerks,0.18538464994586057,54.839444444444446,0.15561342003663825,0.06771575095922286,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+64312,Airline ticket and service agents,0.20873074151286694,65.18527777777777,0.15361538921639445,0.12536188399061188,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31302,Nurse practitioners,0.22821658606599537,72.7526388888889,0.14997454358893214,0.17796438639159157,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31203,Occupational therapists,0.21317936024235276,69.32194444444445,0.14807083063500084,0.14809173116650043,4,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+14110,Survey interviewers and statistical clerks,0.1543297490720828,57.70708333333333,0.14593800234066184,0.019087334769523373,2,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+32100,Opticians,0.19047906962078096,62.48972222222222,0.14531754043074724,0.10272154939163816,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+41311,Probation and parole officers,0.21400769830181515,71.20194444444445,0.14462283571739495,0.1578184068791543,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+65329,Other service support occupations,0.2259914723695523,61.121324786324784,0.14275188540501632,0.18933148405444328,13,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+52113,Audio and video recording technicians,0.1644997109980235,59.66611111111111,0.13500747012998218,0.06708118018433139,2,"High Exposure, Low Complementarity",Digital-Adjacent,Digital Economy
+22233,Construction inspectors,0.17234736579776033,63.05041666666666,0.13051842074730252,0.09514146491631484,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22111,Agricultural and fish products inspectors,0.15208515463216193,62.43527777777778,0.11610941130392402,0.08182814358748529,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+32120,Medical laboratory technologists,0.1515604884824132,64.78371527777777,0.10945121544634881,0.09577908116925828,24,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+33109,Other assisting occupations in support of health services,0.14720583218648142,60.867333333333335,0.10474998850118589,0.09656736878265791,15,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+13112,Medical administrative assistants,0.1277301841425614,61.53666666666666,0.09866340671058624,0.06611344804270479,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+52112,Broadcast technicians,0.10397554286700653,59.64388888888889,0.08228248995256765,0.049341642020786704,1,"High Exposure, Low Complementarity",Digital-Adjacent,Digital Economy
+31204,Kinesiologists and other professional occupations in therapy and assessment,0.07843860113620002,69.1025462962963,0.0711728278720954,0.01652626694894714,6,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22101,Geological and mineral technologists and technicians,0.09303536241395714,63.20444444444444,0.07044289293630258,0.05138739787934621,3,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+53201,Coaches,0.09863597274845225,68.23416666666667,0.0695838429306484,0.06608013150870887,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+22100,Chemical technologists and technicians,0.07340486952361586,63.02295138888889,0.054268507224849355,0.04352635573471285,8,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+52111,Graphic arts technicians,0.09866960246951334,51.159444444444446,0.05318549792491711,0.10345525882996977,2,"High Exposure, Low Complementarity",Digital-Enabled,Digital Economy
+22221,User support technicians,0.06511763206976429,60.47138888888889,0.041387252039173095,0.05397561703762356,2,"High Exposure, Low Complementarity",Core-Digital,Digital Economy
+64321,Casino workers,0.04667432979734928,57.06,0.03813980916564617,0.019412079225982273,4,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+22310,Electrical and electronics engineering technologists and technicians,0.03590874921988774,61.76901234567901,0.029152456443804715,0.015367434950717662,9,"High Exposure, Low Complementarity",Digital-Adjacent,Digital Economy
+52100,Library and public archive technicians,0.019983150051424037,56.88944444444445,0.01636436810336157,0.008231051855026648,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+42202,Early childhood educators and assistants,0.012677603641002797,58.89083333333333,0.010128067117665797,0.005799014041480728,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+62010,Retail sales supervisors,0.001259514583447817,59.55277777777778,9.978819166011192e-4,5.95093066863864e-4,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+32103,"Respiratory therapists, clinical perfusionists and cardiopulmonary technologists",-0.00787047484181487,68.2975,-0.010708346631600335,0.0064548431474706625,2,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+33103,Pharmacy technical assistants and pharmacy assistants,-0.025864670250151614,58.575625,-0.015314007202016026,-0.023997868868726468,4,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+32124,Pharmacy technicians,-0.021614688437453313,61.82444444444444,-0.016633763609445844,-0.011329295639730399,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+60030,Restaurant and food service managers,-0.04400838922014796,66.35055555555556,-0.031875154066627553,-0.02759748698628547,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31103,Veterinarians,-0.055147640606124655,76.55222222222221,-0.03431730443395737,-0.04737936124682653,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+51122,Musicians and singers,-0.05203133989008517,53.772777777777776,-0.04423054125706415,-0.01774320171277384,3,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+53202,Sports officials and referees,-0.06876730342323324,54.91555555555556,-0.057671507995607274,-0.02523779239764807,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+45100,"Student monitors, crossing guards and related occupations",-0.08698169931966017,60.400000000000006,-0.06375496813360605,-0.05283004932572301,4,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+21111,Forestry professionals,-0.09488040353018193,66.75527777777778,-0.06833761064261354,-0.06037255291156238,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+31110,Dentists,-0.11927742351221068,79.53263888888888,-0.06905599663447021,-0.1142304716882531,4,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+32123,Cardiology technologists and electrophysiological diagnostic technologists,-0.10852600028816603,64.18861111111111,-0.0809513523816145,-0.0627195448801354,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+53100,"Registrars, restorers, interpreters and other occupations related to museum and art galleries",-0.10878426295789638,62.157777777777774,-0.08335322188491416,-0.05784383276010969,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+53125,"Patternmakers - textile, leather and fur products",-0.10070970907172763,56.01027777777778,-0.08335742619866895,-0.03946840184933169,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+64300,Maîtres d'hôtel and hosts/hostesses,-0.10209094437456873,54.37527777777778,-0.08616986159935473,-0.036213084897563974,1,"High Exposure, Low Complementarity",Not Applicable,Non-Digital Economy
+72022,"Supervisors, printing and related occupations",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92010,"Supervisors, mineral and metal processing",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92011,"Supervisors, petroleum, gas and chemical processing and utilities",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92012,"Supervisors, food and beverage processing",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92013,"Supervisors, plastic and rubber products manufacturing",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92014,"Supervisors, forest products processing",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92015,"Supervisors, textile, fabric, fur and leather products processing and manufacturing",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92020,"Supervisors, motor vehicle assembling",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92021,"Supervisors, electronics and electrical products manufacturing",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Digital-Adjacent,Digital Economy
+92022,"Supervisors, furniture and fixtures manufacturing",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92023,"Supervisors, other mechanical and metal products manufacturing",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+92024,"Supervisors, other products manufacturing and assembly",-0.13930812619249475,71.2388888888889,-0.09409064326549695,-0.10284881821220927,1,"High Exposure, High Complementarity",Not Applicable,Non-Digital Economy
+80021,Managers in horticulture,-0.14605991652446054,72.3675,-0.09700244778379769,-0.1115830063474647,1,Low Exposure,Not Applicable,Non-Digital Economy
+80022,Managers in aquaculture,-0.14605991652446054,72.3675,-0.09700244778379769,-0.1115830063474647,1,Low Exposure,Not Applicable,Non-Digital Economy
+32109,Other technical occupations in therapy and assessment,-0.1439102669313148,61.376518518518516,-0.10964365228140027,-0.07794066791746737,15,Low Exposure,Not Applicable,Non-Digital Economy
+22231,Engineering inspectors and regulatory officers,-0.15970982763137026,68.72905555555556,-0.11379303774294824,-0.10443941746485166,10,Low Exposure,Not Applicable,Non-Digital Economy
+32110,Denturists,-0.19861879938469074,80.60166666666666,-0.11555365888757717,-0.18893469918597422,1,Low Exposure,Not Applicable,Non-Digital Economy
+22313,"Aircraft instrument, electrical and avionics mechanics, technicians and inspectors",-0.173009987629965,63.382592592592594,-0.11559254215788141,-0.1305980790903755,3,Low Exposure,Not Applicable,Non-Digital Economy
+62020,Food service supervisors,-0.1530945406028023,60.10055555555556,-0.12045435928367206,-0.07424128583903161,1,Low Exposure,Not Applicable,Non-Digital Economy
+65211,"Operators and attendants in amusement, recreation and sport",-0.14628704252671293,66.41064814814816,-0.12082260233481312,-0.057919800277265565,3,Low Exposure,Not Applicable,Non-Digital Economy
+31201,Chiropractors,-0.20843224870870322,75.515,-0.13186524112402973,-0.1741544582842568,1,Low Exposure,Not Applicable,Non-Digital Economy
+22213,Land survey technologists and technicians,-0.1712837836991718,61.46472222222222,-0.13242900894359078,-0.08837660583550783,2,Low Exposure,Not Applicable,Non-Digital Economy
+22112,Forestry technologists and technicians,-0.22228176005787184,69.92627777777778,-0.1351658400421911,-0.19814834531031672,5,Low Exposure,Not Applicable,Non-Digital Economy
+82031,"Contractors and supervisors, landscaping, grounds maintenance and horticulture services",-0.20337954562140792,69.65138888888889,-0.13979612527099228,-0.14462281439876182,8,Low Exposure,Not Applicable,Non-Digital Economy
+22312,Industrial instrument technicians and mechanics,-0.16369948112821087,68.55744444444444,-0.14237431457772154,-0.04850487103488991,5,Low Exposure,Not Applicable,Non-Digital Economy
+40040,Commissioned police officers and related occupations in public protection services,-0.22021617235536894,72.99111111111111,-0.1448783846578276,-0.17135855270679257,1,Low Exposure,Not Applicable,Non-Digital Economy
+22301,Mechanical engineering technologists and technicians,-0.19327480518554283,63.42328703703704,-0.1458190351824632,-0.10793988400564009,6,Low Exposure,Digital-Intensive,Digital Economy
+62202,"Jewellers, jewellery and watch repairers and related occupations",-0.17298190275383177,54.55688271604939,-0.1471189300864636,-0.05882627696433111,9,Low Exposure,Not Applicable,Non-Digital Economy
+22230,Non-destructive testers and inspectors,-0.19110739227378323,61.156111111111116,-0.149245027111757,-0.09521748018202264,3,Low Exposure,Not Applicable,Non-Digital Economy
+32112,Dental technologists and technicians,-0.18179127588042285,52.308055555555555,-0.1571989560599323,-0.055936130605005206,1,Low Exposure,Not Applicable,Non-Digital Economy
+32129,Other medical technologists and technicians,-0.21262161584011163,67.64625,-0.16604127019864195,-0.10594869928686382,2,Low Exposure,Not Applicable,Non-Digital Economy
+53110,Photographers,-0.21340565030529599,60.75472222222222,-0.16651094423765334,-0.10666372357020962,1,Low Exposure,Not Applicable,Non-Digital Economy
+64322,Outdoor sport and recreational guides,-0.26120396289714604,67.10944444444445,-0.18720705690807535,-0.16830866823398313,1,Low Exposure,Not Applicable,Non-Digital Economy
+63211,"Estheticians, electrologists and related occupations",-0.20679816427100875,57.541041666666665,-0.1903169091267099,-0.037487217432727926,4,Low Exposure,Not Applicable,Non-Digital Economy
+32121,Medical radiation technologists,-0.27577020244892614,66.82736111111112,-0.19912381195432663,-0.1743350176153748,2,Low Exposure,Not Applicable,Non-Digital Economy
+65100,Cashiers,-0.24387295554646837,54.60527777777778,-0.20528006033123974,-0.0877809512458288,1,Low Exposure,Not Applicable,Non-Digital Economy
+21112,"Agricultural representatives, consultants and specialists",-0.23033405700457454,61.59898148148148,-0.20969887623916358,-0.04693547313865796,6,Low Exposure,Not Applicable,Non-Digital Economy
+33101,Medical laboratory assistants and related technical occupations,-0.27928979122452324,62.988703703703706,-0.21122400593099508,-0.1548181173513662,3,Low Exposure,Not Applicable,Non-Digital Economy
+32122,Medical sonographers,-0.2810809522852012,62.06777777777778,-0.21562422552178495,-0.14888371832916236,1,Low Exposure,Not Applicable,Non-Digital Economy
+62200,Chefs,-0.3107072362096607,69.19194444444445,-0.21621598722436602,-0.2149238007171492,1,Low Exposure,Not Applicable,Non-Digital Economy
+72023,"Supervisors, railway transport operations",-0.3109835368192505,69.44055555555556,-0.21872241672174833,-0.20985129102127195,2,Low Exposure,Not Applicable,Non-Digital Economy
+72010,"Contractors and supervisors, machining, metal forming, shaping and erecting trades and related occupations",-0.3641942613884299,74.61347222222221,-0.23369182354960555,-0.29683256644791167,2,Low Exposure,Not Applicable,Non-Digital Economy
+72011,"Contractors and supervisors, electrical trades and telecommunications occupations",-0.3641942613884299,74.61347222222221,-0.23369182354960555,-0.29683256644791167,2,Low Exposure,Digital-Adjacent,Digital Economy
+72012,"Contractors and supervisors, pipefitting trades",-0.3641942613884299,74.61347222222221,-0.23369182354960555,-0.29683256644791167,2,Low Exposure,Not Applicable,Non-Digital Economy
+72013,"Contractors and supervisors, carpentry trades",-0.3641942613884299,74.61347222222221,-0.23369182354960555,-0.29683256644791167,2,Low Exposure,Not Applicable,Non-Digital Economy
+72014,"Contractors and supervisors, other construction trades, installers, repairers and servicers",-0.3641942613884299,74.61347222222221,-0.23369182354960555,-0.29683256644791167,4,Low Exposure,Not Applicable,Non-Digital Economy
+72021,"Contractors and supervisors, heavy equipment operator crews",-0.3641942613884299,74.61347222222221,-0.23369182354960555,-0.29683256644791167,2,Low Exposure,Not Applicable,Non-Digital Economy
+82020,"Supervisors, mining and quarrying",-0.3641942613884299,74.61347222222221,-0.23369182354960555,-0.29683256644791167,2,Low Exposure,Not Applicable,Non-Digital Economy
+82021,"Contractors and supervisors, oil and gas drilling and services",-0.3641942613884299,74.61347222222221,-0.23369182354960555,-0.29683256644791167,2,Low Exposure,Not Applicable,Non-Digital Economy
+33100,Dental assistants and dental laboratory assistants,-0.3139474759492178,59.12916666666666,-0.2410481316519255,-0.16581222403569268,2,Low Exposure,Not Applicable,Non-Digital Economy
+31202,Physiotherapists,-0.3957744539172951,76.80055555555555,-0.24529990716445643,-0.34225985841655565,1,Low Exposure,Not Applicable,Non-Digital Economy
+64100,Retail salespersons and visual merchandisers,-0.29553679725030746,56.116018518518516,-0.24947082499530412,-0.1047787382122219,3,Low Exposure,Not Applicable,Non-Digital Economy
+33102,"Nurse aides, orderlies and patient service associates",-0.3617452233250064,61.287006172839504,-0.2725578614240324,-0.20285991561690905,9,Low Exposure,Not Applicable,Non-Digital Economy
+44100,Home child care providers,-0.34120547053775907,58.77472222222222,-0.2729833322896815,-0.15517374786324917,4,Low Exposure,Not Applicable,Non-Digital Economy
+43203,"Border services, customs, and immigration officers",-0.4224735814532118,72.70277777777778,-0.279159980784746,-0.3259720247207228,2,Low Exposure,Not Applicable,Non-Digital Economy
+94104,"Inspectors and testers, mineral and metal processing",-0.35902147653648203,60.084722222222226,-0.28253394552414307,-0.1739736859145661,1,Low Exposure,Not Applicable,Non-Digital Economy
+94133,"Inspectors and graders, textile, fabric, fur and leather products manufacturing",-0.35902147653648203,60.084722222222226,-0.28253394552414307,-0.1739736859145661,1,Low Exposure,Not Applicable,Non-Digital Economy
+94143,"Testers and graders, food and beverage processing",-0.35902147653648203,60.084722222222226,-0.28253394552414307,-0.1739736859145661,1,Low Exposure,Not Applicable,Non-Digital Economy
+94205,"Machine operators and inspectors, electrical apparatus manufacturing",-0.35902147653648203,60.084722222222226,-0.28253394552414307,-0.1739736859145661,1,Low Exposure,Not Applicable,Non-Digital Economy
+94212,"Plastic products assemblers, finishers and inspectors",-0.35902147653648203,60.084722222222226,-0.28253394552414307,-0.1739736859145661,1,Low Exposure,Not Applicable,Non-Digital Economy
+42100,Police officers (except commissioned),-0.4576543252119558,72.90912037037037,-0.3009777231210663,-0.3563666600497885,6,Low Exposure,Not Applicable,Non-Digital Economy
+72020,"Contractors and supervisors, mechanic trades",-0.42555399629848845,70.00659722222223,-0.302430897197179,-0.28004799067737857,4,Low Exposure,Not Applicable,Non-Digital Economy
+53124,Artisans and craftspersons,-0.3513382854342271,54.016309523809525,-0.3090153386260517,-0.09626508997651635,7,Low Exposure,Not Applicable,Non-Digital Economy
+64401,Postal services representatives,-0.3691365201818743,55.215555555555554,-0.31133321400041447,-0.13147573338214458,2,Low Exposure,Not Applicable,Non-Digital Economy
+64201,"Image, social and other personal consultants",-0.32914832597824994,62.026111111111106,-0.3153026578819682,-0.031492478326581905,2,Low Exposure,Not Applicable,Non-Digital Economy
+94153,Photographic and film processors,-0.37829900276638717,54.64138888888889,-0.3182965776053852,-0.13647770990788577,1,Low Exposure,Not Applicable,Non-Digital Economy
+94110,Chemical plant machine operators,-0.46377074110879785,67.32208333333332,-0.33262847167073617,-0.2982878868146519,2,Low Exposure,Not Applicable,Non-Digital Economy
+62201,Funeral directors and embalmers,-0.5191601414536886,72.3398611111111,-0.33950652023501127,-0.4086287301687192,2,Low Exposure,Not Applicable,Non-Digital Economy
+72604,Railway traffic controllers and marine traffic regulators,-0.4826589474460063,67.64222222222222,-0.34335419017799973,-0.31685376383033464,1,Low Exposure,Not Applicable,Non-Digital Economy
+73311,Railway conductors and brakemen/women,-0.4826589474460063,67.64222222222222,-0.34335419017799973,-0.31685376383033464,1,Low Exposure,Not Applicable,Non-Digital Economy
+72600,"Air pilots, flight engineers and flying instructors",-0.5003297104248808,71.14319444444445,-0.3448274432406866,-0.35369559236709724,6,Low Exposure,Not Applicable,Non-Digital Economy
+63202,Bakers,-0.40194105143514136,52.979166666666664,-0.3448698881430339,-0.12981044761084376,1,Low Exposure,Not Applicable,Non-Digital Economy
+43200,Sheriffs and bailiffs,-0.49606930138168687,68.42759259259259,-0.3552907805320308,-0.32020589298227253,3,Low Exposure,Not Applicable,Non-Digital Economy
+52110,Film and video camera operators,-0.4634491238171402,61.975,-0.35595338690643175,-0.2445029839888739,1,Low Exposure,Digital-Adjacent,Digital Economy
+52119,"Other technical and coordinating occupations in motion pictures, broadcasting and the performing arts",-0.4581776310179549,60.64375,-0.35864086304024073,-0.22640001814560257,2,Low Exposure,Not Applicable,Non-Digital Economy
+72603,"Engineer officers, water transport",-0.5397826128085158,72.19888888888889,-0.3593947605886433,-0.41029876542675436,1,Low Exposure,Not Applicable,Non-Digital Economy
+94203,"Assemblers, fabricators and inspectors, industrial electrical motors and transformers",-0.43651828871802756,56.64486111111111,-0.36120189796933877,-0.17130988456428717,2,Low Exposure,Not Applicable,Non-Digital Economy
+72024,"Supervisors, motor transport and other ground transit operators",-0.4689318522537765,62.924236111111114,-0.3650397342794182,-0.2363064209583948,4,Low Exposure,Not Applicable,Non-Digital Economy
+32101,Licensed practical nurses,-0.5068818583464292,65.81583333333333,-0.369843531932148,-0.31169868398562783,1,Low Exposure,Not Applicable,Non-Digital Economy
+80020,Managers in agriculture,-0.4503223126129256,65.32435185185186,-0.37364772701209903,-0.17439914841539084,3,Low Exposure,Not Applicable,Non-Digital Economy
+94123,Lumber graders and other wood processing inspectors and graders,-0.4931838502886286,62.33166666666667,-0.3770322037699581,-0.2641911668797237,1,Low Exposure,Not Applicable,Non-Digital Economy
+92101,Water and waste treatment plant operators,-0.5404730875003178,67.42027777777777,-0.38568159524022677,-0.35207890881403614,1,Low Exposure,Not Applicable,Non-Digital Economy
+32111,Dental hygienists and dental therapists,-0.5061673710094233,59.75333333333334,-0.40000860708352193,-0.2414619900509528,1,Low Exposure,Not Applicable,Non-Digital Economy
+22311,Electronic service technicians (household and business equipment),-0.5504621719224742,64.99138888888888,-0.400347111614352,-0.341442193354082,2,Low Exposure,Digital-Adjacent,Digital Economy
+62021,Executive housekeepers,-0.5458623280526058,63.51694444444445,-0.4108341835033262,-0.3071264518350498,1,Low Exposure,Not Applicable,Non-Digital Economy
+62024,Cleaning supervisors,-0.5458623280526058,63.51694444444445,-0.4108341835033262,-0.3071264518350498,1,Low Exposure,Not Applicable,Non-Digital Economy
+94202,"Assemblers and inspectors, electrical appliance, apparatus and equipment manufacturing",-0.49989388615783725,56.88263888888889,-0.41391214166292933,-0.19556862161926059,2,Low Exposure,Not Applicable,Non-Digital Economy
+40041,Fire chiefs and senior firefighting officers,-0.7122623767160321,78.47277777777778,-0.42954763283802105,-0.6430450218992632,2,Low Exposure,Not Applicable,Non-Digital Economy
+82010,"Supervisors, logging and forestry",-0.6477063013628309,68.98333333333333,-0.452079207325381,-0.4449609781359034,3,Low Exposure,Not Applicable,Non-Digital Economy
+72602,"Deck officers, water transport",-0.7191745193086581,75.80138888888888,-0.4529281214326006,-0.6055871667827988,4,Low Exposure,Not Applicable,Non-Digital Economy
+94201,"Electronics assemblers, fabricators, inspectors and testers",-0.5509547600513272,56.10703703703704,-0.45929144794995047,-0.20849155487632595,3,Low Exposure,Digital-Adjacent,Digital Economy
+73301,"Bus drivers, subway operators and other transit operators",-0.598140290991872,60.762569444444445,-0.46649250869552555,-0.299437694293976,4,Low Exposure,Not Applicable,Non-Digital Economy
+53111,"Motion pictures, broadcasting, photography and performing arts assistants and operators",-0.622753427578208,59.02201388888889,-0.4678569669473741,-0.3523176632112676,4,Low Exposure,Digital-Adjacent,Digital Economy
+44101,"Home support workers, caregivers and related occupations",-0.5884886457429197,58.38444444444444,-0.47312035081706816,-0.26240940504003535,1,Low Exposure,Not Applicable,Non-Digital Economy
+93101,"Central control and process operators, petroleum, gas and chemical processing",-0.6271546347373732,64.37824074074074,-0.47619873331622736,-0.3433547172094753,3,Low Exposure,Not Applicable,Non-Digital Economy
+64200,"Tailors, dressmakers, furriers and milliners",-0.5597735069490852,53.28777777777778,-0.47856436542844666,-0.18471316165276594,1,Low Exposure,Not Applicable,Non-Digital Economy
+75210,Boat and cable ferry operators and related occupations,-0.7180416498350921,71.64773148148147,-0.4794111259576348,-0.5427738516489419,6,Low Exposure,Not Applicable,Non-Digital Economy
+65101,Service station attendants,-0.7066746245544795,70.79694444444445,-0.4804209655929536,-0.514622219860175,1,Low Exposure,Not Applicable,Non-Digital Economy
+72404,Aircraft mechanics and aircraft inspectors,-0.7007013550222253,69.10944444444445,-0.48818447322194286,-0.483377417946736,1,Low Exposure,Not Applicable,Non-Digital Economy
+94150,Plateless printing equipment operators,-0.5333655849711606,45.89555555555555,-0.4954151420293932,-0.08631967005974625,1,Low Exposure,Not Applicable,Non-Digital Economy
+93200,Aircraft assemblers and aircraft assembly inspectors,-0.6213029293632062,57.924166666666665,-0.5080281234027418,-0.25764768784365844,2,Low Exposure,Not Applicable,Non-Digital Economy
+42101,Firefighters,-0.8100087568981809,74.54983333333334,-0.5085185723022411,-0.6857504483019213,5,Low Exposure,Not Applicable,Non-Digital Economy
+73310,Railway and yard locomotive engineers,-0.7251195906208543,68.47722222222222,-0.5102837460075818,-0.48865198365352563,2,Low Exposure,Not Applicable,Non-Digital Economy
+72422,Electrical mechanics,-0.6878977079807368,64.755,-0.5112405549943126,-0.4018131536140662,5,Low Exposure,Not Applicable,Non-Digital Economy
+82030,Agricultural service contractors and farm supervisors,-0.7003509176370979,66.30731481481482,-0.5211593314477818,-0.40757781460096915,6,Low Exposure,Not Applicable,Non-Digital Economy
+72101,Tool and die makers,-0.6450518549677098,57.78055555555555,-0.5224902107131367,-0.2787709410999047,1,Low Exposure,Not Applicable,Non-Digital Economy
+94219,"Other products assemblers, finishers and inspectors",-0.6862110992574186,57.72173611111111,-0.5245916776957009,-0.367609283661362,4,Low Exposure,Not Applicable,Non-Digital Economy
+94200,"Motor vehicle assemblers, inspectors and testers",-0.6650019120020637,58.835972222222225,-0.5354520911690929,-0.2946658042373952,2,Low Exposure,Not Applicable,Non-Digital Economy
+94204,Mechanical assemblers and inspectors,-0.6650019120020637,58.835972222222225,-0.5354520911690929,-0.2946658042373952,2,Low Exposure,Not Applicable,Non-Digital Economy
+92100,Power engineers and power systems operators,-0.6770228799675998,62.70847222222222,-0.5424144280552201,-0.3061718455871255,10,Low Exposure,Not Applicable,Non-Digital Economy
+53121,"Actors, comedians and circus performers",-0.5569674177495848,50.81888888888889,-0.5448540872367638,-0.027552213153237776,2,Low Exposure,Not Applicable,Non-Digital Economy
+53122,"Painters, sculptors and other visual artists",-0.5851101671005174,43.06111111111111,-0.5600625760305561,-0.05697166170808899,1,Low Exposure,Not Applicable,Non-Digital Economy
+72501,Water well drillers,-0.7174800504123986,60.33722222222222,-0.5628132745450258,-0.3517952368187713,1,Low Exposure,Not Applicable,Non-Digital Economy
+73402,"Drillers and blasters - surface mining, quarrying and construction",-0.7174800504123986,60.33722222222222,-0.5628132745450258,-0.3517952368187713,1,Low Exposure,Not Applicable,Non-Digital Economy
+73209,Other repairers and servicers,-0.7358666477988358,59.614636752136754,-0.5667701919428908,-0.3846160715476972,13,Low Exposure,Not Applicable,Non-Digital Economy
+72200,Electricians (except industrial and power system),-0.8369381762558548,70.9675,-0.5675510256017688,-0.6127309238123188,1,Low Exposure,Not Applicable,Non-Digital Economy
+72202,Power system electricians,-0.8369381762558548,70.9675,-0.5675510256017688,-0.6127309238123188,1,Low Exposure,Digital-Adjacent,Digital Economy
+64301,Bartenders,-0.6319007434409093,48.71972222222222,-0.5690933201025687,-0.14285778082188236,1,Low Exposure,Not Applicable,Non-Digital Economy
+63210,Hairstylists and barbers,-0.7215844675206404,59.33458333333333,-0.5737309204916463,-0.33629829871259886,2,Low Exposure,Not Applicable,Non-Digital Economy
+72205,Telecommunications equipment installation and cable television service technicians,-0.7642342099737375,63.11990740740741,-0.5761698097970321,-0.4277593544335388,3,Low Exposure,Digital-Adjacent,Digital Economy
+32102,Paramedical occupations,-0.8451061680090705,70.38277777777778,-0.578031491264004,-0.6074711173548653,1,Low Exposure,Not Applicable,Non-Digital Economy
+72201,Industrial electricians,-0.8471146515604215,69.35180555555556,-0.588303181295138,-0.5886761520875324,2,Low Exposure,Digital-Adjacent,Digital Economy
+73202,Pest controllers and fumigators,-0.7411030113132709,59.21888888888889,-0.5896318488982176,-0.3445266971796958,1,Low Exposure,Not Applicable,Non-Digital Economy
+72410,"Automotive service technicians, truck and bus mechanics and mechanical repairers",-0.7615258033414073,61.180347222222224,-0.5955245809032571,-0.377575849967361,8,Low Exposure,Not Applicable,Non-Digital Economy
+14400,Shippers and receivers,-0.7618217415366594,59.9175,-0.6007937870908523,-0.3662639700803073,1,Low Exposure,Not Applicable,Non-Digital Economy
+94140,"Process control and machine operators, food and beverage processing",-0.727289490520284,56.436527777777776,-0.6022451597998117,-0.28441790224149266,4,Low Exposure,Not Applicable,Non-Digital Economy
+65201,"Food counter attendants, kitchen helpers and related support occupations",-0.7324169487601824,54.84177777777778,-0.6185466257478602,-0.25900221315210314,5,Low Exposure,Not Applicable,Non-Digital Economy
+95102,Labourers in chemical products processing and utilities,-0.7840802453843595,62.68592592592592,-0.6271584021503543,-0.35692446999660016,3,Low Exposure,Not Applicable,Non-Digital Economy
+72204,Telecommunications line and cable installers and repairers,-0.8368957203839881,62.854166666666664,-0.6305679555420655,-0.4693000451311786,2,Low Exposure,Digital-Adjacent,Digital Economy
+83101,"Oil and gas well drillers, servicers, testers and related workers",-0.9867018178865528,74.7825,-0.6314672367403296,-0.807994043321331,1,Low Exposure,Not Applicable,Non-Digital Economy
+43201,Correctional service officers,-0.9385304465101015,70.715,-0.6388133554461187,-0.681717482233556,1,Low Exposure,Not Applicable,Non-Digital Economy
+95109,"Other labourers in processing, manufacturing and utilities",-0.7763345462105552,59.150219907407404,-0.6395035914937514,-0.31122700947754767,24,Low Exposure,Not Applicable,Non-Digital Economy
+72406,Elevator constructors and mechanics,-0.9401877031694025,70.66666666666667,-0.6403957958512945,-0.6818876545390835,1,Low Exposure,Not Applicable,Non-Digital Economy
+72402,"Heating, refrigeration and air conditioning mechanics",-0.9163558229480459,68.69,-0.6422763417371269,-0.62340380123034,3,Low Exposure,Not Applicable,Non-Digital Economy
+72420,Oil and solid fuel heating mechanics,-0.9163558229480459,68.69,-0.6422763417371269,-0.62340380123034,2,Low Exposure,Not Applicable,Non-Digital Economy
+64311,Pursers and flight attendants,-0.9322071590208973,71.3411111111111,-0.6472754943390355,-0.6480874893252857,2,Low Exposure,Not Applicable,Non-Digital Economy
+65210,"Support occupations in accommodation, travel and facilities set-up services",-0.8388755872982133,57.81722222222223,-0.6550177259480663,-0.4181914280681156,2,Low Exposure,Not Applicable,Non-Digital Economy
+63200,Cooks,-0.7779137907095133,54.371833333333335,-0.6571388333258303,-0.27470705648511995,5,Low Exposure,Not Applicable,Non-Digital Economy
+73401,Printing press operators,-0.7903305745570676,55.581111111111106,-0.6575484519433589,-0.3020177928208999,1,Low Exposure,Not Applicable,Non-Digital Economy
+54100,"Program leaders and instructors in recreation, sport and fitness",-0.9081567783579597,64.91361111111111,-0.674771120255214,-0.5308442126754142,3,Low Exposure,Not Applicable,Non-Digital Economy
+94210,"Furniture and fixture assemblers, finishers, refinishers and inspectors",-0.7854097195684563,54.90236111111111,-0.680882288560769,-0.23775146368176325,2,Low Exposure,Not Applicable,Non-Digital Economy
+72423,"Motorcycle, all-terrain vehicle and other related mechanics",-0.9219846166025002,64.82083333333333,-0.6817354432954712,-0.5464555289594655,3,Low Exposure,Not Applicable,Non-Digital Economy
+73201,General building maintenance workers and building superintendents,-1.0075278421545362,69.835,-0.6946428694618955,-0.711668310457502,1,Low Exposure,Not Applicable,Non-Digital Economy
+65220,Pet groomers and animal care workers,-0.917912633377019,62.442638888888894,-0.7006512168218804,-0.49416903572191195,2,Low Exposure,Not Applicable,Non-Digital Economy
+72100,Machinists and machining and tooling inspectors,-0.880465198507688,59.00972222222222,-0.7023519803229078,-0.4051250271460941,1,Low Exposure,Not Applicable,Non-Digital Economy
+72405,Machine fitters,-0.880465198507688,59.00972222222222,-0.7023519803229078,-0.4051250271460941,1,Low Exposure,Not Applicable,Non-Digital Economy
+94122,Paper converting machine operators,-0.8891395381490993,59.28944444444445,-0.7067844283708703,-0.41477336467241915,1,Low Exposure,Not Applicable,Non-Digital Economy
+72999,Other technical trades and related occupations,-1.0185430891338823,67.00194444444445,-0.7255956742579779,-0.6663196062229143,2,Low Exposure,Not Applicable,Non-Digital Economy
+73300,Transport truck drivers,-0.970120838114194,62.642222222222216,-0.7389438485539419,-0.5258205153195772,2,Low Exposure,Not Applicable,Non-Digital Economy
+94142,Fish and seafood plant workers,-0.8898844174931511,56.67125,-0.7392295290800738,-0.34267005211663215,4,Low Exposure,Not Applicable,Non-Digital Economy
+72300,Plumbers,-1.0414732028691867,67.145,-0.746062221856461,-0.671923077476915,4,Low Exposure,Not Applicable,Non-Digital Economy
+72301,"Steamfitters, pipefitters and sprinkler system installers",-1.0414732028691867,67.145,-0.746062221856461,-0.671923077476915,4,Low Exposure,Not Applicable,Non-Digital Economy
+72302,Gas fitters,-1.0414732028691867,67.145,-0.746062221856461,-0.671923077476915,2,Low Exposure,Not Applicable,Non-Digital Economy
+94121,"Pulp mill, papermaking and finishing machine operators",-0.9209735247128301,57.02319444444444,-0.7536825297979064,-0.38050948462395956,2,Low Exposure,Not Applicable,Non-Digital Economy
+84120,Specialized livestock workers and farm machinery operators,-0.9685553790235907,64.35662037037036,-0.7547023293127915,-0.48641658071374777,6,Low Exposure,Not Applicable,Non-Digital Economy
+75211,Railway and motor transport labourers,-1.058100651050303,66.3013888888889,-0.7668995952073591,-0.6623474487500148,1,Low Exposure,Not Applicable,Non-Digital Economy
+83110,Logging machinery operators,-1.0183867994197162,62.8625,-0.7731366273016836,-0.557830483607489,1,Low Exposure,Not Applicable,Non-Digital Economy
+72103,Boilermakers,-1.0173922083067057,62.49805555555556,-0.7760893852120953,-0.5488520939261016,1,Low Exposure,Not Applicable,Non-Digital Economy
+84101,Oil and gas well drilling and related workers and services operators,-1.1143535815967562,67.95750000000001,-0.7815136490976682,-0.757056596153959,2,Low Exposure,Not Applicable,Non-Digital Economy
+72429,Other small engine and small equipment repairers,-0.9091727613885214,52.733888888888885,-0.7823103299362171,-0.2885532388315806,1,Low Exposure,Not Applicable,Non-Digital Economy
+94152,Binding and finishing machine operators,-0.9212024275162399,53.170833333333334,-0.7886362804053889,-0.30152654864289985,1,Low Exposure,Not Applicable,Non-Digital Economy
+72421,Appliance servicers and repairers,-0.9851707010238538,58.40472222222222,-0.7918364241184838,-0.4397458817363131,1,Low Exposure,Not Applicable,Non-Digital Economy
+63201,Butchers - retail and wholesale,-0.9857811593649914,57.65777777777778,-0.7996903210058651,-0.4232704159197687,1,Low Exposure,Not Applicable,Non-Digital Economy
+65202,Meat cutters and fishmongers - retail and wholesale,-0.9857811593649914,57.65777777777778,-0.7996903210058651,-0.4232704159197687,1,Low Exposure,Not Applicable,Non-Digital Economy
+94105,Metalworking and forging machine operators,-0.9395275475747754,53.48905555555555,-0.8023431167800936,-0.3120310037408889,10,Low Exposure,Not Applicable,Non-Digital Economy
+94106,Machining tool operators,-0.9265882196197972,51.768055555555556,-0.8068535693075727,-0.2723408400141579,2,Low Exposure,Not Applicable,Non-Digital Economy
+72500,Crane operators,-1.1445669845321376,67.21101851851851,-0.8181205295255768,-0.7425143978313679,3,Low Exposure,Not Applicable,Non-Digital Economy
+63220,Shoe repairers and shoemakers,-0.88983202611388,46.43666666666667,-0.821703025736722,-0.1549619023704265,1,Low Exposure,Not Applicable,Non-Digital Economy
+72401,Heavy-duty equipment mechanics,-1.130617050280184,65.76972222222223,-0.8245942851763342,-0.6960599683926988,2,Low Exposure,Not Applicable,Non-Digital Economy
+74201,Water transport deck and engine room crew,-1.1642221194565616,67.90805555555556,-0.8251100876615197,-0.7713227153304718,1,Low Exposure,Not Applicable,Non-Digital Economy
+72203,Electrical power line and cable workers,-1.2479886581741,72.10583333333332,-0.8320895045672582,-0.9459778314724029,1,Low Exposure,Digital-Adjacent,Digital Economy
+93102,"Pulping, papermaking and coating control operators",-0.9993598264876778,55.297222222222224,-0.8374829292162677,-0.3681949215771868,3,Low Exposure,Not Applicable,Non-Digital Economy
+74102,Couriers and messengers,-1.0511666664444395,58.6025,-0.8436429882451781,-0.47202019378883514,2,Low Exposure,Not Applicable,Non-Digital Economy
+75201,Delivery service drivers and door-to-door distributors,-1.0511666664444395,58.6025,-0.8436429882451781,-0.47202019378883514,2,Low Exposure,Not Applicable,Non-Digital Economy
+73400,Heavy equipment operators,-1.1399684655005133,64.30555555555556,-0.8497843596368003,-0.6600343588393338,7,Low Exposure,Not Applicable,Non-Digital Economy
+83100,Underground production and development miners,-1.123988713900486,64.53017361111111,-0.8540050814903972,-0.6140876433756142,8,Low Exposure,Not Applicable,Non-Digital Economy
+94111,Plastics processing machine operators,-1.019706978071162,54.180850694444445,-0.8625221913641153,-0.35752254454008114,16,Low Exposure,Not Applicable,Non-Digital Economy
+74203,Automotive and heavy truck and equipment parts installers and servicers,-1.1521616480012788,62.903888888888886,-0.8755955772255021,-0.6290596401132192,3,Low Exposure,Not Applicable,Non-Digital Economy
+74101,Letter carriers,-1.0792066190773628,57.43722222222222,-0.8778596397153321,-0.45797106644383206,1,Low Exposure,Not Applicable,Non-Digital Economy
+72400,Construction millwrights and industrial mechanics,-1.2173357680433563,64.8625,-0.8909060461979934,-0.7424763376444059,2,Low Exposure,Not Applicable,Non-Digital Economy
+72106,Welders and related machine operators,-1.0412886532798815,53.134930555555556,-0.8925916947416964,-0.3382166690280568,4,Low Exposure,Not Applicable,Non-Digital Economy
+94132,Industrial sewing machine operators,-0.9691298346338066,46.672916666666666,-0.8929859512184234,-0.17319204689044312,2,Low Exposure,Not Applicable,Non-Digital Economy
+94124,Woodworking machine operators,-1.0912596764120392,55.943690476190476,-0.9054109547665896,-0.42271971260195546,7,Low Exposure,Not Applicable,Non-Digital Economy
+85100,Livestock labourers,-1.1227852836018895,57.67472222222222,-0.9106412419613324,-0.4825293793712203,1,Low Exposure,Not Applicable,Non-Digital Economy
+85102,Aquaculture and marine harvest labourers,-1.1227852836018895,57.67472222222222,-0.9106412419613324,-0.4825293793712203,1,Low Exposure,Not Applicable,Non-Digital Economy
+84111,Silviculture and forestry workers,-1.2225320326614086,64.02722222222222,-0.9138800495598455,-0.702040220861056,1,Low Exposure,Not Applicable,Non-Digital Economy
+72102,Sheet metal workers,-1.140906414814303,57.948611111111106,-0.9222136702013148,-0.49742464372338974,1,Low Exposure,Not Applicable,Non-Digital Economy
+73112,Painters and decorators (except interior decorators),-0.9853492154570659,44.886944444444445,-0.9251772233664877,-0.13686339608911222,1,Low Exposure,Not Applicable,Non-Digital Economy
+65320,"Dry cleaning, laundry and related occupations",-1.0689233923002734,51.276111111111106,-0.9353525067374185,-0.3038118629884112,1,Low Exposure,Not Applicable,Non-Digital Economy
+72104,Structural metal and platework fabricators and fitters,-1.1473952179805844,57.062777777777775,-0.937622687253284,-0.4771352910890489,1,Low Exposure,Not Applicable,Non-Digital Economy
+74204,Utility maintenance workers,-1.2535923025812947,63.84675925925926,-0.9509210716317805,-0.6884367814159316,3,Low Exposure,Not Applicable,Non-Digital Economy
+65310,Light duty cleaners,-1.0629856085735283,52.05777777777777,-0.9518675355769279,-0.25274211986034434,2,Low Exposure,Not Applicable,Non-Digital Economy
+74200,Railway yard and track maintenance workers,-1.4124939177728046,70.73055555555555,-0.9611981874501775,-1.026488639423694,1,Low Exposure,Not Applicable,Non-Digital Economy
+73111,Glaziers,-1.331569791370455,66.485,-0.9626620794762464,-0.8390940791406996,1,Low Exposure,Not Applicable,Non-Digital Economy
+93100,"Central control and process operators, mineral and metal processing",-1.1816322354961912,57.16027777777778,-0.9644482306119914,-0.4939929600459456,1,Low Exposure,Not Applicable,Non-Digital Economy
+94100,"Machine operators, mineral and metal processing",-1.1816322354961912,57.16027777777778,-0.9644482306119914,-0.4939929600459456,1,Low Exposure,Not Applicable,Non-Digital Economy
+94213,"Industrial painters, coaters and metal finishing process operators",-1.1852719599507906,56.15388888888889,-0.9793474190198955,-0.4683828976023998,1,Low Exposure,Not Applicable,Non-Digital Economy
+94129,Other wood processing machine operators,-1.1619241390714525,54.43819444444445,-0.9800982431413903,-0.41356964842502486,2,Low Exposure,Not Applicable,Non-Digital Economy
+94102,Glass forming and finishing machine operators and glass cutters,-1.1680981344245855,54.560790598290595,-0.9838194277251815,-0.41914865620244307,13,Low Exposure,Not Applicable,Non-Digital Economy
+94103,"Concrete, clay and stone forming operators",-1.1702821327666895,54.54955882352941,-0.9857785102223968,-0.41966023551527964,17,Low Exposure,Not Applicable,Non-Digital Economy
+72411,"Auto body collision, refinishing and glass technicians and damage repair estimators",-1.2008067855523552,56.49416666666667,-0.9880443442300342,-0.48393595205804896,2,Low Exposure,Not Applicable,Non-Digital Economy
+75101,Material handlers,-1.2406417176182893,59.13575396825397,-0.9926794006909183,-0.5639993561409553,7,Low Exposure,Not Applicable,Non-Digital Economy
+94120,Sawmill machine operators,-1.179205669596096,53.81777777777778,-1.001882617030583,-0.40332776655410657,1,Low Exposure,Not Applicable,Non-Digital Economy
+94112,Rubber processing machine operators and related workers,-1.2096700148384656,55.17371212121212,-1.0125172512564493,-0.44843116929834254,11,Low Exposure,Not Applicable,Non-Digital Economy
+94131,"Weavers, knitters and other fabric making occupations",-1.1760295175583992,52.115,-1.0192092481406465,-0.3566934366376725,1,Low Exposure,Not Applicable,Non-Digital Economy
+72310,Carpenters,-1.3205392880792597,60.7037962962963,-1.0336242009714476,-0.6525988561533316,3,Low Exposure,Not Applicable,Non-Digital Economy
+94107,Machine operators of other metal products,-1.3251288389510505,60.72861111111111,-1.0342851442819443,-0.6615346176938619,1,Low Exposure,Not Applicable,Non-Digital Economy
+14401,Storekeepers and partspersons,-1.2210566964494332,53.96,-1.035703681752566,-0.42159220902278444,1,Low Exposure,Not Applicable,Non-Digital Economy
+65102,"Store shelf stockers, clerks and order fillers",-1.2210566964494332,53.96,-1.035703681752566,-0.42159220902278444,5,Low Exposure,Not Applicable,Non-Digital Economy
+75110,Construction trades helpers and labourers,-1.3631706110471673,62.68215277777778,-1.048139741294539,-0.7165492317812543,16,Low Exposure,Not Applicable,Non-Digital Economy
+83120,Fishing masters and officers,-1.3719912638331193,61.775,-1.0565056838015376,-0.7175834869363853,1,Low Exposure,Not Applicable,Non-Digital Economy
+83121,Fishermen/women,-1.3719912638331193,61.775,-1.0565056838015376,-0.7175834869363853,1,Low Exposure,Not Applicable,Non-Digital Economy
+84121,Fishing vessel deckhands,-1.3719912638331193,61.775,-1.0565056838015376,-0.7175834869363853,1,Low Exposure,Not Applicable,Non-Digital Economy
+85104,Trappers and hunters,-1.3719912638331193,61.775,-1.0565056838015376,-0.7175834869363853,1,Low Exposure,Not Applicable,Non-Digital Economy
+85111,"Oil and gas drilling, servicing and related labourers",-1.5296169952293226,69.05111111111111,-1.0664650775036186,-1.0534559711718505,2,Low Exposure,Not Applicable,Non-Digital Economy
+94101,Foundry workers,-1.2777922900209073,55.025888888888886,-1.0681473356133457,-0.47684511408520797,5,Low Exposure,Not Applicable,Non-Digital Economy
+74100,Mail and parcel sorters and related occupations,-1.199112142070091,49.44611111111111,-1.071216839517132,-0.2909025419150668,1,Low Exposure,Not Applicable,Non-Digital Economy
+72320,Bricklayers,-1.3648321102874623,58.98907407407407,-1.0725739381138681,-0.6647518984956085,6,Low Exposure,Not Applicable,Non-Digital Economy
+84100,Underground mine service and support workers,-1.5561323223142085,69.51916666666666,-1.0777945367939576,-1.0879967827140926,1,Low Exposure,Not Applicable,Non-Digital Economy
+85110,Mine labourers,-1.5561323223142085,69.51916666666666,-1.0777945367939576,-1.0879967827140926,1,Low Exposure,Not Applicable,Non-Digital Economy
+74205,Public works maintenance equipment operators and related workers,-1.3766245327946742,60.85263888888889,-1.079060172716723,-0.6768210168951463,2,Low Exposure,Not Applicable,Non-Digital Economy
+73200,Residential and commercial installers and servicers,-1.411700871797518,62.83871794871795,-1.0809291290647025,-0.7523524229109866,13,Low Exposure,Not Applicable,Non-Digital Economy
+94141,"Industrial butchers and meat cutters, poultry preparers and related workers",-1.3174996430244312,56.7737037037037,-1.0838129973213335,-0.531528819977477,3,Low Exposure,Not Applicable,Non-Digital Economy
+73101,Tilesetters,-1.3105374325436996,54.29083333333333,-1.1072657959926575,-0.46234876959181614,1,Low Exposure,Not Applicable,Non-Digital Economy
+75100,Longshore workers,-1.4792672776108424,63.26416666666667,-1.1205602842540157,-0.8158921718567644,3,Low Exposure,Not Applicable,Non-Digital Economy
+75119,Other trades helpers and labourers,-1.4800799684957848,62.87361111111111,-1.1234793680862003,-0.811101104081848,1,Low Exposure,Not Applicable,Non-Digital Economy
+72403,Railway carmen/women,-1.461381102178626,60.08138888888889,-1.1500906898467766,-0.7080414246146921,1,Low Exposure,Not Applicable,Non-Digital Economy
+85121,Landscaping and grounds maintenance labourers,-1.4918889409897949,60.97351851851852,-1.162575307163174,-0.749035900890756,3,Low Exposure,Not Applicable,Non-Digital Economy
+65312,"Janitors, caretakers and heavy-duty cleaners",-1.447702522408632,57.391666666666666,-1.1782649760089077,-0.6128455507784017,1,Low Exposure,Not Applicable,Non-Digital Economy
+72311,Cabinetmakers,-1.3411494697466682,50.6975,-1.1813217071048028,-0.36353408993941877,1,Low Exposure,Not Applicable,Non-Digital Economy
+65200,Food and beverage servers,-1.3734413393815768,54.37979166666666,-1.1828423240390284,-0.4335244293018268,4,Low Exposure,Not Applicable,Non-Digital Economy
+55109,Other performers,-1.2546642439828268,42.944722222222225,-1.202414448577853,-0.1188440700670392,1,Low Exposure,Not Applicable,Non-Digital Economy
+73113,Floor covering installers,-1.4461266521091796,55.03263888888889,-1.2091102884401972,-0.5391023852359429,2,Low Exposure,Not Applicable,Non-Digital Economy
+95100,Labourers in mineral and metal processing,-1.4246992539354828,53.41361111111111,-1.2162182631095906,-0.4741976363604966,1,Low Exposure,Not Applicable,Non-Digital Economy
+95101,Labourers in metal fabrication,-1.4246992539354828,53.41361111111111,-1.2162182631095906,-0.4741976363604966,1,Low Exposure,Not Applicable,Non-Digital Economy
+95103,"Labourers in wood, pulp and paper processing",-1.4246992539354828,53.41361111111111,-1.2162182631095906,-0.4741976363604966,1,Low Exposure,Not Applicable,Non-Digital Economy
+95104,Labourers in rubber and plastic products manufacturing,-1.4246992539354828,53.41361111111111,-1.2162182631095906,-0.4741976363604966,1,Low Exposure,Not Applicable,Non-Digital Economy
+95106,Labourers in food and beverage processing,-1.4246992539354828,53.41361111111111,-1.2162182631095906,-0.4741976363604966,1,Low Exposure,Not Applicable,Non-Digital Economy
+95107,Labourers in fish and seafood processing,-1.4246992539354828,53.41361111111111,-1.2162182631095906,-0.4741976363604966,1,Low Exposure,Not Applicable,Non-Digital Economy
+32201,Massage therapists,-1.4779306561746408,55.772777777777776,-1.2267932894241649,-0.5712211230535104,1,Low Exposure,Not Applicable,Non-Digital Economy
+63221,Upholsterers,-1.3274387356765525,46.13611111111111,-1.229794554678078,-0.22209525986233244,1,Low Exposure,Not Applicable,Non-Digital Economy
+75212,Public works and maintenance labourers,-1.4603453551759797,53.340555555555554,-1.2477150149474816,-0.4836354832901129,1,Low Exposure,Not Applicable,Non-Digital Economy
+73110,Roofers and shinglers,-1.7652543134104117,65.57138888888889,-1.2923230689109466,-1.0756994074820085,1,Low Exposure,Not Applicable,Non-Digital Economy
+73100,Concrete finishers,-1.789643440721991,66.16305555555556,-1.299589354334512,-1.1146459374217652,1,Low Exposure,Not Applicable,Non-Digital Economy
+72321,Insulators,-1.6315107654883092,56.90083333333334,-1.3358719508331303,-0.6724412934269963,1,Low Exposure,Not Applicable,Non-Digital Economy
+94130,"Textile fibre and yarn, hide and pelt processing machine operators and workers",-1.474675300023801,48.35703703703704,-1.338412447375029,-0.3099348405521945,3,Low Exposure,Not Applicable,Non-Digital Economy
+95105,Labourers in textile processing and cutting,-1.474675300023801,48.35703703703704,-1.338412447375029,-0.3099348405521945,3,Low Exposure,Not Applicable,Non-Digital Economy
+85101,Harvesting labourers,-1.6102535343451103,55.10319444444444,-1.3599485732876126,-0.5693277858694366,2,Low Exposure,Not Applicable,Non-Digital Economy
+72105,Ironworkers,-1.8874576884767853,66.22486111111111,-1.370349571006651,-1.1761813203005445,2,Low Exposure,Not Applicable,Non-Digital Economy
+53200,Athletes,-1.8264560143747104,63.48916666666666,-1.3751590271784346,-1.0264914982287632,1,Low Exposure,Not Applicable,Non-Digital Economy
+65311,Specialized cleaners,-1.7041211039663995,55.81388888888889,-1.4138477422543896,-0.6602373745297624,1,Low Exposure,Not Applicable,Non-Digital Economy
+73102,"Plasterers, drywall installers and finishers and lathers",-1.7678940984725624,58.028333333333336,-1.4276088602351755,-0.7739912162797383,1,Low Exposure,Not Applicable,Non-Digital Economy
+84110,Chain saw and skidder operators,-1.8075857997712355,55.308055555555555,-1.5088320356423786,-0.6795263598973206,1,Low Exposure,Not Applicable,Non-Digital Economy
+22114,Landscape and horticulture technicians and specialists,-1.8363803754541383,55.355,-1.5320054292792133,-0.6923119439893664,1,Low Exposure,Not Applicable,Non-Digital Economy
+85103,Nursery and greenhouse labourers,-2.097721785088331,52.531666666666666,-1.8092559046138927,-0.6561261923676527,2,Low Exposure,Not Applicable,Non-Digital Economy
+53120,Dancers,-2.6791706553959256,60.65833333333333,-2.093020210980263,-1.3332206173448482,1,Low Exposure,Not Applicable,Non-Digital Economy
