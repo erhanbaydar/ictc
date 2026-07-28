@@ -672,7 +672,37 @@ comparison %>%
 
 ---
 
-# Section 9 — Final Output
+# Section 9 — OECD Quadrant Classification (Median Split)
+
+Same median-split convention as the AIOE pipeline's `quadrant` column
+(Section 6 of `AIOE_CAIOE_digital_economy.Rmd`), applied here to the OECD
+exposure score instead of AIOE, so the two quadrant classifications can be
+compared side by side per NOC.
+
+```{r oecd-quadrants}
+oecd_exposure_median <- median(comparison$oecd_exposure_reversed_baseline, na.rm = TRUE)
+comp_median_oecd      <- median(comparison$complementarity_score, na.rm = TRUE)
+
+comparison <- comparison %>%
+  mutate(
+    oecd_quadrant = case_when(
+      is.na(oecd_exposure_reversed_baseline) | is.na(complementarity_score) ~ NA_character_,
+      oecd_exposure_reversed_baseline >= oecd_exposure_median & complementarity_score >= comp_median_oecd ~
+        "High Exposure, High Complementarity",
+      oecd_exposure_reversed_baseline >= oecd_exposure_median & complementarity_score < comp_median_oecd ~
+        "High Exposure, Low Complementarity",
+      TRUE ~ "Low Exposure"
+    )
+  )
+
+cat("OECD exposure median:", round(oecd_exposure_median, 3),
+    " | Complementarity median:", round(comp_median_oecd, 2), "\n")
+table(comparison$oecd_quadrant, useNA = "ifany")
+```
+
+---
+
+# Section 10 — Final Output
 
 ```{r write-final}
 write_csv(comparison, "noc_oecd_gap_vs_aioe_complementarity.csv")
@@ -698,6 +728,10 @@ Final output (`noc_oecd_gap_vs_aioe_complementarity.csv`) contains, per NOC:
   `n_major_group_fallback` -- coverage diagnostics for the SOC->NOC mapping
 - `divergence_flag`, `divergence_direction` -- flags NOCs where the OECD
   exposure ranking and the AIOE ranking disagree sharply
+- `oecd_quadrant` -- median-split classification of the OECD exposure score
+  (High Exposure/High Complementarity, High Exposure/Low Complementarity,
+  Low Exposure), same convention as the AIOE pipeline's `quadrant` column,
+  so the two can be compared side by side
 
 Intermediate outputs, useful for auditing:
 
