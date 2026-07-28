@@ -1,0 +1,682 @@
+---
+title: "OECD AI Capability Gap Index by Occupation"
+subtitle: "Domain-level gaps, aggregate index, NOC mapping, and comparison to AIOE/Complementarity"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(dplyr)
+library(tidyr)
+library(readr)
+library(stringr)
+```
+
+## Overview
+
+This script builds the OECD "AI Capability Gap" index by occupation, following
+OECD AI Papers No. 59 ("The OECD AI Exposure Measure"). For each occupation `j`
+and each of 9 capability domains `i`:
+
+```
+CG_ji = max(0, H_ji - AI_i)
+```
+
+where `H_ji` is the occupation's required capability level (0-5 scale, O*NET-derived)
+and `AI_i` is the **current** AI capability level in that domain (a single fixed
+value per domain, supplied below -- not occupation-specific). The domain gaps are
+combined into a total index:
+
+```
+CG_j = sum_i ( CG_ji * Importance_ji )
+```
+
+We do not have OECD's original per-occupation importance weights (their Table 6.2
+factor-analysis crosswalk), so Section 4 builds two documented, defensible
+alternatives -- an equal-weighted average and a set of weights fit by regression --
+and lets us compare them before picking one.
+
+Everything here (domain gaps, total index, reversed/normalized score) is
+**recomputed from scratch** from the raw job-demand (H_ji) values and our own
+AI_i assumptions. The "AI Capability Gap Index" and per-domain "Capability Gap"
+columns that ship in the two input CSVs are OECD's own published numbers for a
+*different* AI_i assumption -- they are used **only as a QA cross-check** in
+Sections 2-3, never as the source of the numbers we carry forward.
+
+**Required input files (place in the working directory):**
+
+| File | Source | Notes |
+|---|---|---|
+| `oecd_capability_demands.csv` | OECD AI Exposure Measure public data | ~879 O*NET-SOC occupations; per-domain Job Demands (H_ji) + OECD's own published Capability Gap / Total / Reversed columns (used for QA only) |
+| `cognitive_scenario.csv` | Same source, "+1 cognitive capability" scenario export | OECD's own published per-domain gaps under the scenario (QA only -- we recompute the scenario ourselves from `oecd_capability_demands.csv`'s H_ji using scenario AI_i) |
+| `soc_noc_crosswalk.csv` | ICTC crosswalk (SOC -> NOC via The Dais) | `noc, noc_title, onetsoc_code`, same file used by the AIOE pipeline |
+| `noc_aioe_complementarity_caioe_quadrants.csv` | Output of `AIOE_CAIOE_digital_economy.Rmd` | NOC-level AIOE / Complementarity / C-AIOE, merged in as parallel columns (Section 7) |
+
+**Note on encoding:** both OECD CSVs are Windows-1252 encoded (their domain
+column headers use an em-dash, `—`), so they are read with an explicit locale
+below rather than the default UTF-8 guess.
+
+---
+
+# Section 1 — Load & Harmonize OECD Capability Demand Data
+
+Column headers in the source files are messy (irregular internal whitespace,
+em-dashes), so instead of hand-typing exact header strings we match columns by
+domain keyword + measure keyword. This is more robust than a positional
+rename if OECD ever reorders columns in a refreshed export.
+
+```{r load-demands}
+cp1252 <- locale(encoding = "windows-1252")
+
+demands_raw <- read_csv("oecd_capability_demands.csv", locale = cp1252, show_col_types = FALSE)
+
+# Canonical domain order/keys, exactly as OECD AI Papers No. 59 defines them
+domain_levels <- c("language", "social_interaction", "problem_solving", "creativity",
+                    "metacognition", "knowledge_learning_memory", "vision",
+                    "manipulation", "robotic_intelligence")
+
+cognitive_domains <- c("language", "social_interaction", "problem_solving",
+                        "creativity", "metacognition", "knowledge_learning_memory")
+
+domain_patterns <- c(
+  language                  = "^language",
+  social_interaction        = "^social interaction",
+  problem_solving           = "^problem solving",
+  creativity                = "^creativity",
+  metacognition             = "^metacognition",
+  knowledge_learning_memory = "^knowledge",
+  vision                    = "^vision",
+  manipulation              = "^manipulation",
+  robotic_intelligence      = "^robotic intelligence"
+)
+
+# Classify each raw column name -> (domain, measure) based on squished/lowercased text
+classify_domain_column <- function(col_names) {
+  cleaned <- col_names %>% str_squish() %>% str_to_lower()
+  domain <- rep(NA_character_, length(cleaned))
+  for (key in names(domain_patterns)) {
+    hit <- str_detect(cleaned, domain_patterns[[key]])
+    domain[hit] <- key
+  }
+  measure <- case_when(
+    str_detect(cleaned, "capability gap") ~ "gap",
+    str_detect(cleaned, "job demands")    ~ "demand",
+    TRUE ~ NA_character_
+  )
+  tibble(raw_name = col_names, domain = domain, measure = measure)
+}
+
+demands_col_map <- classify_domain_column(names(demands_raw))
+
+# Sanity check: expect exactly 9 domains x 2 measures = 18 domain columns, all classified
+n_domain_gap    <- sum(demands_col_map$measure == "gap", na.rm = TRUE)
+n_domain_demand <- sum(demands_col_map$measure == "demand", na.rm = TRUE)
+cat("Domain gap columns matched:", n_domain_gap, "/ 9\n")
+cat("Domain demand columns matched:", n_domain_demand, "/ 9\n")
+
+if (n_domain_gap != 9 || n_domain_demand != 9) {
+  warning("Domain column classification did not find exactly 9+9 domain columns -- ",
+          "inspect demands_col_map before continuing.")
+  print(demands_col_map)
+}
+
+# Build a clean, renamed table: onetsoc_code, occupation_title, oecd_reversed_published,
+# oecd_total_published, gap_<domain> (OECD published), demand_<domain> (H_ji)
+rename_lookup <- demands_col_map %>%
+  filter(!is.na(measure)) %>%
+  mutate(new_name = paste0(measure, "_", domain)) %>%
+  select(new_name, raw_name) %>%   # deframe() uses col 1 as names -> must be the new names
+  deframe()
+
+demands <- demands_raw %>%
+  rename(
+    onetsoc_code            = `Occupation Code (O*NET-SOC Code)`,
+    occupation_title        = `Occupation Title`,
+    oecd_reversed_published = `AI Capability Gap Index (Reversed, norm.)`,
+    oecd_total_published    = `AI Capability Gap Index (Total)`
+  ) %>%
+  rename(!!!rename_lookup) %>%
+  mutate(onetsoc_code = str_trim(onetsoc_code)) %>%
+  filter(!is.na(onetsoc_code), onetsoc_code != "")
+
+cat("Occupations loaded:", nrow(demands), "\n")
+cat("Duplicate onetsoc_code rows:", sum(duplicated(demands$onetsoc_code)), "\n")
+
+head(demands %>% select(onetsoc_code, occupation_title, starts_with("demand_")))
+```
+
+---
+
+# Section 2 — Baseline AI Capability Levels (AI_i) and Domain-Level Capability Gap
+
+Baseline current AI capability levels per domain (0-5 scale), as supplied
+directly by the user for this pipeline run. Edit this tribble to update the
+assumption without touching any downstream code.
+
+```{r ai-capability-baseline}
+ai_capability_baseline <- tribble(
+  ~domain,                      ~ai_level_baseline,
+  "language",                   3,
+  "social_interaction",         2,
+  "problem_solving",            2,
+  "creativity",                 3,
+  "metacognition",               2,
+  "knowledge_learning_memory",  2,
+  "vision",                     3,
+  "manipulation",               3,
+  "robotic_intelligence",       2
+)
+
+stopifnot(setequal(ai_capability_baseline$domain, domain_levels))
+ai_capability_baseline
+```
+
+Compute `CG_ji = max(0, H_ji - AI_i)` for every occupation x domain pair, by
+pivoting the demand columns to long form, joining the AI_i table, then pivoting
+back to one gap column per domain.
+
+```{r domain-gap-baseline}
+demand_long <- demands %>%
+  select(onetsoc_code, starts_with("demand_")) %>%
+  pivot_longer(-onetsoc_code, names_to = "domain", names_prefix = "demand_",
+               values_to = "h_ji")
+
+gap_baseline_long <- demand_long %>%
+  inner_join(ai_capability_baseline, by = "domain") %>%
+  mutate(cg_ji = pmax(0, h_ji - ai_level_baseline))
+
+# Sanity check: join should not drop any domain x occupation rows
+if (nrow(gap_baseline_long) != nrow(demand_long)) {
+  warning("Baseline AI_i join dropped rows -- check for domain name mismatches. ",
+          "Before: ", nrow(demand_long), " After: ", nrow(gap_baseline_long))
+}
+
+gap_baseline_wide <- gap_baseline_long %>%
+  select(onetsoc_code, domain, cg_ji) %>%
+  pivot_wider(names_from = domain, values_from = cg_ji, names_prefix = "gap_calc_")
+
+demands <- demands %>% left_join(gap_baseline_wide, by = "onetsoc_code")
+
+cat("Baseline domain gaps computed for", nrow(gap_baseline_wide), "occupations\n")
+```
+
+**QA check** — compare our recomputed `gap_calc_*` against OECD's own published
+`gap_*` columns (computed under OECD's own AI_i assumption, which need not match
+ours). Large systematic differences are expected if our AI_i differs from
+theirs; this check is about catching *join/logic* errors, not enforcing an
+exact match.
+
+```{r qa-domain-gap-baseline}
+qa_gap_baseline <- purrr::map_dfr(domain_levels, function(d) {
+  calc_col <- demands[[paste0("gap_calc_", d)]]
+  pub_col  <- demands[[paste0("gap_", d)]]
+  tibble(
+    domain           = d,
+    correlation      = suppressWarnings(cor(calc_col, pub_col, use = "complete.obs")),
+    mean_abs_diff    = mean(abs(calc_col - pub_col), na.rm = TRUE),
+    exact_match_pct  = mean(abs(calc_col - pub_col) < 1e-6, na.rm = TRUE) * 100
+  )
+})
+
+print(qa_gap_baseline)
+```
+
+---
+
+# Section 3 — Scenario AI Capability Levels (+1 Cognitive) and Domain-Level Gap
+
+The scenario raises AI capability by +1 level (capped at 5) in the 6
+**cognitive** domains only (Language, Social Interaction, Problem Solving,
+Creativity, Metacognition & Critical Thinking, Knowledge/Learning/Memory).
+The 3 physical/robotic domains (Vision, Manipulation, Robotic Intelligence)
+are left at their baseline level. Occupational demand (H_ji) does not change
+between scenarios -- we reuse the same `demand_*` columns from Section 1.
+
+```{r ai-capability-scenario}
+ai_capability_scenario <- ai_capability_baseline %>%
+  mutate(
+    ai_level_scenario = if_else(domain %in% cognitive_domains,
+                                 pmin(5, ai_level_baseline + 1),
+                                 ai_level_baseline)
+  ) %>%
+  select(domain, ai_level_scenario)
+
+ai_capability_scenario
+```
+
+```{r domain-gap-scenario}
+gap_scenario_long <- demand_long %>%
+  inner_join(ai_capability_scenario, by = "domain") %>%
+  mutate(cg_ji = pmax(0, h_ji - ai_level_scenario))
+
+if (nrow(gap_scenario_long) != nrow(demand_long)) {
+  warning("Scenario AI_i join dropped rows -- check for domain name mismatches. ",
+          "Before: ", nrow(demand_long), " After: ", nrow(gap_scenario_long))
+}
+
+gap_scenario_wide <- gap_scenario_long %>%
+  select(onetsoc_code, domain, cg_ji) %>%
+  pivot_wider(names_from = domain, values_from = cg_ji, names_prefix = "gap_scenario_")
+
+demands <- demands %>% left_join(gap_scenario_wide, by = "onetsoc_code")
+
+cat("Scenario domain gaps computed for", nrow(gap_scenario_wide), "occupations\n")
+
+# Sanity check: physical domains must be identical between baseline and scenario,
+# since scenario AI_i is unchanged for them
+physical_domains <- setdiff(domain_levels, cognitive_domains)
+physical_diff <- purrr::map_dbl(physical_domains, function(d) {
+  max(abs(demands[[paste0("gap_calc_", d)]] - demands[[paste0("gap_scenario_", d)]]), na.rm = TRUE)
+})
+names(physical_diff) <- physical_domains
+cat("Max |baseline - scenario| gap for physical domains (should be ~0):\n")
+print(physical_diff)
+```
+
+**QA check** against OECD's own published scenario export
+(`cognitive_scenario.csv`), same caveat as Section 2: differences reflect our
+different AI_i assumption, not a bug, unless the physical-domain columns
+(which should be unaffected by the scenario on both sides) disagree sharply.
+
+```{r qa-domain-gap-scenario}
+scenario_raw <- read_csv("cognitive_scenario.csv", locale = cp1252, show_col_types = FALSE)
+scenario_col_map <- classify_domain_column(names(scenario_raw))
+
+scenario_rename_lookup <- scenario_col_map %>%
+  filter(!is.na(measure), measure == "gap") %>%
+  mutate(new_name = paste0("gap_pub_scenario_", domain)) %>%
+  select(new_name, raw_name) %>%   # deframe() uses col 1 as names -> must be the new names
+  deframe()
+
+scenario_pub <- scenario_raw %>%
+  rename(onetsoc_code = `Occupation Code (O*NET-SOC Code)`) %>%
+  rename(!!!scenario_rename_lookup) %>%
+  mutate(onetsoc_code = str_trim(onetsoc_code)) %>%
+  select(onetsoc_code, starts_with("gap_pub_scenario_"))
+
+# Coerce/verify join keys before merging (both should be plain O*NET-SOC strings)
+cat("scenario_pub onetsoc_code class:", class(scenario_pub$onetsoc_code), "\n")
+cat("demands onetsoc_code class:     ", class(demands$onetsoc_code), "\n")
+
+qa_scenario <- demands %>%
+  select(onetsoc_code, starts_with("gap_scenario_")) %>%
+  inner_join(scenario_pub, by = "onetsoc_code")
+
+cat("QA scenario match rate:", round(100 * nrow(qa_scenario) / nrow(demands), 1), "%\n")
+
+qa_gap_scenario <- purrr::map_dfr(domain_levels, function(d) {
+  calc_col <- qa_scenario[[paste0("gap_scenario_", d)]]
+  pub_col  <- qa_scenario[[paste0("gap_pub_scenario_", d)]]
+  tibble(
+    domain          = d,
+    correlation     = suppressWarnings(cor(calc_col, pub_col, use = "complete.obs")),
+    mean_abs_diff   = mean(abs(calc_col - pub_col), na.rm = TRUE),
+    exact_match_pct = mean(abs(calc_col - pub_col) < 1e-6, na.rm = TRUE) * 100
+  )
+})
+
+print(qa_gap_scenario)
+```
+
+---
+
+# Section 4 — Aggregating Domain Gaps into a Total Capability Gap Index (CG_j)
+
+We don't have OECD's per-occupation importance weights, so we build two
+documented approximations and compare them before choosing one:
+
+- **(a) Equal-weighted** — every domain gets weight 1/9 (`Importance_ji` treated
+  as uniform across domains, ignoring any occupation-specific variation). This
+  is the "no information" fallback, clearly flagged as an approximation.
+- **(b) Regression-fit global weights** — OECD's own published Total Index
+  (`oecd_total_published`, computed under *their* AI_i, not ours) gives us a
+  real target value for all 879 occupations. We fit a single set of
+  non-negative global weights `w_i` that best reproduce that target from our
+  *own* baseline domain gaps (`gap_calc_*`), via constrained least squares.
+  This is far more defensible than eyeballing a handful of published totals,
+  even though the weights are still global (not occupation-specific) and the
+  regression target used a different AI_i assumption than ours.
+
+```{r weight-fit-equal}
+gap_cols_calc <- paste0("gap_calc_", domain_levels)
+
+cg_equal <- demands %>%
+  transmute(onetsoc_code, cg_total_equal = rowMeans(across(all_of(gap_cols_calc)), na.rm = TRUE))
+
+demands <- demands %>% left_join(cg_equal, by = "onetsoc_code")
+
+r2_equal <- cor(demands$cg_total_equal, demands$oecd_total_published, use = "complete.obs")^2
+cat("Equal-weighted CG_j vs OECD published Total -- R^2 =", round(r2_equal, 3), "\n")
+```
+
+```{r weight-fit-regression}
+# Non-negative least squares via optim(): minimize SSE of
+# oecd_total_published ~ sum_i w_i * gap_calc_i, subject to w_i >= 0
+X <- as.matrix(demands[, gap_cols_calc])
+y <- demands$oecd_total_published
+
+complete_rows <- complete.cases(X, y)
+X_fit <- X[complete_rows, ]
+y_fit <- y[complete_rows]
+
+sse <- function(w) sum((y_fit - X_fit %*% w)^2)
+
+fit <- optim(
+  par     = rep(1, ncol(X_fit)),
+  fn      = sse,
+  method  = "L-BFGS-B",
+  lower   = rep(0, ncol(X_fit))
+)
+
+fitted_weights <- setNames(fit$par, domain_levels)
+cat("Fitted global weights (unnormalized, non-negative least squares):\n")
+print(round(fitted_weights, 3))
+
+cg_regression <- as.numeric(X %*% fit$par)
+demands$cg_total_regression <- cg_regression
+
+r2_regression <- cor(demands$cg_total_regression, demands$oecd_total_published, use = "complete.obs")^2
+cat("Regression-fit CG_j vs OECD published Total -- R^2 =", round(r2_regression, 3), "\n")
+
+cat("\nComparison:\n")
+cat("  Equal-weighted      R^2 =", round(r2_equal, 3), "\n")
+cat("  Regression-fit      R^2 =", round(r2_regression, 3), "\n")
+```
+
+**Choice used downstream.** Set `weighting_method` below to `"regression"` or
+`"equal"` to control which total index is carried forward through the rest of
+the pipeline. Both remain in the output table for comparison regardless.
+
+```{r weight-fit-choice}
+weighting_method <- "regression"   # or "equal"
+
+demands <- demands %>%
+  mutate(
+    cg_total_baseline = if (weighting_method == "regression") cg_total_regression else cg_total_equal
+  )
+
+# Apply the same chosen weights (equal or regression-fit) to the scenario gaps
+gap_cols_scenario <- paste0("gap_scenario_", domain_levels)
+
+if (weighting_method == "regression") {
+  demands$cg_total_scenario <- as.numeric(as.matrix(demands[, gap_cols_scenario]) %*% fit$par)
+} else {
+  demands$cg_total_scenario <- rowMeans(demands[, gap_cols_scenario], na.rm = TRUE)
+}
+
+cat("Using weighting_method =", weighting_method, "\n")
+cat("Baseline CG_j range: min =", round(min(demands$cg_total_baseline, na.rm = TRUE), 2),
+    " max =", round(max(demands$cg_total_baseline, na.rm = TRUE), 2), "\n")
+cat("Scenario CG_j range: min =", round(min(demands$cg_total_scenario, na.rm = TRUE), 2),
+    " max =", round(max(demands$cg_total_scenario, na.rm = TRUE), 2), "\n")
+```
+
+---
+
+# Section 5 — Reversed / Normalized Exposure Score
+
+`exposure = 1 - CG_j / 23`, matching OECD's convention (23 is their documented
+effective real-world maximum of the total index). Higher = smaller capability
+gap = AI more capable relative to the job's requirements = **more exposed**.
+
+```{r reversed-score}
+gap_index_max <- 23
+
+demands <- demands %>%
+  mutate(
+    exposure_reversed_baseline = pmax(0, 1 - cg_total_baseline / gap_index_max),
+    exposure_reversed_scenario = pmax(0, 1 - cg_total_scenario / gap_index_max)
+  )
+
+# Sanity check: flag any occupation whose CG_j exceeds the assumed 23 max
+n_over_max <- sum(demands$cg_total_baseline > gap_index_max, na.rm = TRUE)
+if (n_over_max > 0) {
+  warning(n_over_max, " occupations have CG_j > ", gap_index_max,
+          " -- the 23 cap may not hold for this weighting; reversed score was clamped at 0.")
+}
+
+cat("Baseline exposure_reversed range: min =", round(min(demands$exposure_reversed_baseline), 3),
+    " max =", round(max(demands$exposure_reversed_baseline), 3), "\n")
+
+write_csv(demands, "oecd_capability_gap_occupation_level.csv")
+```
+
+---
+
+# Section 6 — SOC -> NOC Aggregation
+
+Same three-tier pattern as the AIOE pipeline: (1) direct match on 6-digit base
+SOC, (2) backward-crosswalk fallback for any SOC code revisions, (3) major
+(2-digit) SOC-group average as a last resort for anything still unmatched.
+Coerce join keys and verify row counts at each step.
+
+```{r crosswalk-load}
+crosswalk <- read_csv("soc_noc_crosswalk.csv", show_col_types = FALSE,
+                       col_types = cols(noc = col_character())) %>%
+  mutate(
+    onetsoc_code = str_trim(as.character(onetsoc_code)),
+    onetsoc_base = str_extract(onetsoc_code, "^[0-9]{2}-[0-9]{4}")
+  )
+
+demands <- demands %>%
+  mutate(onetsoc_base = str_extract(onetsoc_code, "^[0-9]{2}-[0-9]{4}"))
+
+cat("Crosswalk rows:", nrow(crosswalk), " | Distinct NOCs:", n_distinct(crosswalk$noc), "\n")
+cat("Distinct onetsoc_base in gap data:", n_distinct(demands$onetsoc_base), "\n")
+```
+
+```{r crosswalk-tier1-direct}
+# ---- Tier 1: direct match on base SOC code ---------------------------------
+matched_direct <- crosswalk %>%
+  inner_join(
+    demands %>% select(onetsoc_base, cg_total_baseline, cg_total_scenario,
+                        exposure_reversed_baseline, exposure_reversed_scenario),
+    by = "onetsoc_base"
+  ) %>%
+  mutate(match_method = "direct")
+
+unmatched_after_tier1 <- crosswalk %>%
+  anti_join(demands, by = "onetsoc_base")
+
+cat("Tier 1 (direct): ", n_distinct(matched_direct$onetsoc_code), " of ",
+    n_distinct(crosswalk$onetsoc_code), " O*NET-SOC codes matched\n")
+cat("Unmatched after tier 1:", n_distinct(unmatched_after_tier1$onetsoc_code), "\n")
+```
+
+```{r crosswalk-tier2-backward}
+# ---- Tier 2: backward crosswalk for revised/retired SOC codes -------------
+# Populate this tribble with known SOC-vintage pairs (old_onetsoc_base ->
+# current_onetsoc_base) if/when unmatched codes turn out to be revisions
+# rather than genuine gaps. Empty by default -- extend as needed.
+# Explicit character(0) typing avoids an empty tribble defaulting to logical
+# columns, which would otherwise fail the join below with a type mismatch.
+soc_backward_crosswalk <- tibble(
+  old_onetsoc_base     = character(0),
+  current_onetsoc_base = character(0)
+  # e.g. add rows: tibble(old_onetsoc_base = "15-1141", current_onetsoc_base = "15-1152")
+)
+
+matched_tier2 <- unmatched_after_tier1 %>%
+  inner_join(soc_backward_crosswalk, by = c("onetsoc_base" = "old_onetsoc_base")) %>%
+  inner_join(
+    demands %>% select(onetsoc_base, cg_total_baseline, cg_total_scenario,
+                        exposure_reversed_baseline, exposure_reversed_scenario),
+    by = c("current_onetsoc_base" = "onetsoc_base")
+  ) %>%
+  mutate(match_method = "backward_crosswalk") %>%
+  select(-current_onetsoc_base)
+
+unmatched_after_tier2 <- unmatched_after_tier1 %>%
+  anti_join(soc_backward_crosswalk, by = c("onetsoc_base" = "old_onetsoc_base"))
+
+cat("Tier 2 (backward crosswalk): ", n_distinct(matched_tier2$onetsoc_code), " additional codes matched\n")
+cat("Unmatched after tier 2:", n_distinct(unmatched_after_tier2$onetsoc_code), "\n")
+```
+
+```{r crosswalk-tier3-majorgroup}
+# ---- Tier 3: 2-digit major SOC group average, last resort -----------------
+major_group_avg <- demands %>%
+  mutate(major_group = str_extract(onetsoc_base, "^[0-9]{2}")) %>%
+  group_by(major_group) %>%
+  summarise(
+    cg_total_baseline           = mean(cg_total_baseline, na.rm = TRUE),
+    cg_total_scenario           = mean(cg_total_scenario, na.rm = TRUE),
+    exposure_reversed_baseline  = mean(exposure_reversed_baseline, na.rm = TRUE),
+    exposure_reversed_scenario  = mean(exposure_reversed_scenario, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+matched_tier3 <- unmatched_after_tier2 %>%
+  mutate(major_group = str_extract(onetsoc_base, "^[0-9]{2}")) %>%
+  inner_join(major_group_avg, by = "major_group") %>%
+  mutate(match_method = "major_group_average") %>%
+  select(-major_group)
+
+still_unmatched <- unmatched_after_tier2 %>%
+  mutate(major_group = str_extract(onetsoc_base, "^[0-9]{2}")) %>%
+  anti_join(major_group_avg, by = "major_group")
+
+cat("Tier 3 (major group average): ", n_distinct(matched_tier3$onetsoc_code), " additional codes matched\n")
+cat("Still unmatched (no major group fallback available):", n_distinct(still_unmatched$onetsoc_code), "\n")
+```
+
+```{r crosswalk-noc-aggregate}
+# ---- Combine all tiers and aggregate to NOC --------------------------------
+all_matched <- bind_rows(matched_direct, matched_tier2, matched_tier3)
+
+# Sanity check: every crosswalk row should appear at most once across all tiers
+dup_check <- all_matched %>% count(onetsoc_code, noc) %>% filter(n > 1)
+if (nrow(dup_check) > 0) {
+  warning(nrow(dup_check), " onetsoc_code x noc combinations matched via more than one tier -- check for overlap.")
+}
+
+noc_oecd_gap <- all_matched %>%
+  group_by(noc, noc_title) %>%
+  summarise(
+    oecd_cg_total_baseline          = mean(cg_total_baseline, na.rm = TRUE),
+    oecd_cg_total_scenario          = mean(cg_total_scenario, na.rm = TRUE),
+    oecd_exposure_reversed_baseline = mean(exposure_reversed_baseline, na.rm = TRUE),
+    oecd_exposure_reversed_scenario = mean(exposure_reversed_scenario, na.rm = TRUE),
+    n_onet_linked_oecd              = n(),
+    n_direct                        = sum(match_method == "direct"),
+    n_backward_crosswalk            = sum(match_method == "backward_crosswalk"),
+    n_major_group_fallback          = sum(match_method == "major_group_average"),
+    .groups = "drop"
+  ) %>%
+  arrange(desc(oecd_exposure_reversed_baseline))
+
+cat("NOC-level OECD gap results:", nrow(noc_oecd_gap), "occupations\n")
+cat("NOCs relying on backward crosswalk:", sum(noc_oecd_gap$n_backward_crosswalk > 0), "\n")
+cat("NOCs relying on major-group fallback:", sum(noc_oecd_gap$n_major_group_fallback > 0), "\n")
+cat("Coverage: ", round(100 * nrow(noc_oecd_gap) / n_distinct(crosswalk$noc), 1),
+    "% of crosswalk NOCs have at least one linked O*NET-SOC code\n")
+
+write_csv(noc_oecd_gap, "noc_oecd_capability_gap.csv")
+```
+
+---
+
+# Section 7 — Merge with Existing AIOE / Complementarity Pipeline Output
+
+The OECD Gap Index is merged in as **parallel columns**, not blended into a
+single number, so AIOE / Complementarity / OECD Gap can be compared side by
+side per NOC.
+
+```{r merge-aioe-complementarity}
+aioe_comp_noc <- read_csv("noc_aioe_complementarity_caioe_quadrants.csv", show_col_types = FALSE,
+                           col_types = cols(noc = col_character())) %>%
+  mutate(noc = str_pad(noc, width = 5, side = "left", pad = "0"))
+
+noc_oecd_gap <- noc_oecd_gap %>%
+  mutate(noc = str_pad(as.character(noc), width = 5, side = "left", pad = "0"))
+
+cat("AIOE/Complementarity NOCs:", n_distinct(aioe_comp_noc$noc), "\n")
+cat("OECD gap NOCs:            ", n_distinct(noc_oecd_gap$noc), "\n")
+
+comparison <- aioe_comp_noc %>%
+  left_join(
+    noc_oecd_gap %>% select(-noc_title),
+    by = "noc"
+  )
+
+n_matched <- sum(!is.na(comparison$oecd_exposure_reversed_baseline))
+cat("Matched to OECD gap data:", n_matched, "of", nrow(comparison), "NOCs (",
+    round(100 * n_matched / nrow(comparison), 1), "%)\n")
+```
+
+---
+
+# Section 8 — Divergence Flag: OECD Gap Index vs AIOE
+
+Both `aioe_score` and `exposure_reversed_baseline` should tell a broadly
+similar story (higher = more exposed), but they come from very different
+methodologies. We rank each NOC by percentile within each measure and flag
+sharp disagreements -- e.g. AIOE says highly exposed while OECD says lowly
+exposed, or vice versa.
+
+```{r divergence-flag}
+divergence_threshold <- 0.4   # flag when percentile ranks differ by more than this
+
+comparison <- comparison %>%
+  mutate(
+    aioe_percentile = percent_rank(aioe_score),
+    oecd_percentile  = percent_rank(oecd_exposure_reversed_baseline),
+    percentile_gap   = aioe_percentile - oecd_percentile,
+    divergence_flag  = abs(percentile_gap) > divergence_threshold & !is.na(percentile_gap),
+    divergence_direction = case_when(
+      !divergence_flag ~ "Consistent",
+      percentile_gap > 0  ~ "AIOE High / OECD Low",
+      percentile_gap < 0  ~ "AIOE Low / OECD High",
+      TRUE ~ NA_character_
+    )
+  )
+
+cat("NOCs flagged as divergent (|percentile gap| >", divergence_threshold, "):",
+    sum(comparison$divergence_flag, na.rm = TRUE), "of",
+    sum(!is.na(comparison$percentile_gap)), "comparable NOCs\n")
+
+print(table(comparison$divergence_direction, useNA = "ifany"))
+
+comparison %>%
+  filter(divergence_flag) %>%
+  select(noc, noc_title, aioe_score, oecd_exposure_reversed_baseline,
+         aioe_percentile, oecd_percentile, divergence_direction) %>%
+  arrange(desc(abs(aioe_percentile - oecd_percentile))) %>%
+  head(15)
+```
+
+---
+
+# Section 9 — Final Output
+
+```{r write-final}
+write_csv(comparison, "noc_oecd_gap_vs_aioe_complementarity.csv")
+
+cat("Final comparison table:", nrow(comparison), "NOCs, ", ncol(comparison), "columns\n")
+```
+
+---
+
+# Summary
+
+Final output (`noc_oecd_gap_vs_aioe_complementarity.csv`) contains, per NOC:
+
+- `oecd_cg_total_baseline` / `oecd_cg_total_scenario` -- OECD-style total
+  Capability Gap Index (`weighting_method` in Section 4 controls whether this
+  is equal-weighted or regression-fit)
+- `oecd_exposure_reversed_baseline` / `oecd_exposure_reversed_scenario` --
+  normalized exposure score, `1 - CG_j / 23`
+- `aioe_score`, `complementarity_score`, `c_aioe`, `augmentation_index`,
+  `quadrant`, `tier`, `digital_economy` -- carried over unchanged from the
+  AIOE/Complementarity pipeline
+- `n_onet_linked_oecd`, `n_direct`, `n_backward_crosswalk`,
+  `n_major_group_fallback` -- coverage diagnostics for the SOC->NOC mapping
+- `divergence_flag`, `divergence_direction` -- flags NOCs where the OECD
+  exposure ranking and the AIOE ranking disagree sharply
+
+Intermediate outputs, useful for auditing:
+
+- `oecd_capability_gap_occupation_level.csv` -- full occupation-level detail
+  (domain demands, computed gaps, both weighting schemes, QA columns)
+- `noc_oecd_capability_gap.csv` -- OECD gap index at NOC level, before merging
+  with AIOE/Complementarity
